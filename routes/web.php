@@ -38,6 +38,5 @@ Route::group(['middleware' => 'auth'], function() {
    });
     Route::group([ 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::resource('users', UserController::class);
-        Route::resource('/register', UserController::class);
     });
 });
