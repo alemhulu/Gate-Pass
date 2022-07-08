@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Teachers\CourseController;
 use \App\Http\Controllers\Students\LessonController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,10 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
+    return view('register');
+})->name('register');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'student', 'as' => 'student.'], function() {
