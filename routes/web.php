@@ -21,15 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UserController::class,'register'])->name('register');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
-    return view('register');
-})->name('register');
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+
+    Route::get('/visits', [App\Http\Controllers\VisitController::class, 'visits'])->name('visits');
+    
+    Route::get('/register',[UserController::class,'register'])->name('register');
     Route::group(['prefix' => 'student', 'as' => 'student.'], function() {
         Route::resource('lessons', LessonController::class);
     });
