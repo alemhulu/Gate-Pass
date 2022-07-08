@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Teachers\CourseController;
+use \App\Http\Controllers\Students\LessonController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +25,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
+    return view('register');
+})->name('register');
+
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'student', 'as' => 'student.'], function() {
-        Route::resource('lessons', \App\Http\Controllers\Students\LessonController::class);
+        Route::resource('lessons', LessonController::class);
     });
    Route::group(['prefix' => 'teacher', 'as' => 'teacher.'], function() {
-       Route::resource('courses', \App\Http\Controllers\Teachers\CourseController::class);
+       Route::resource('courses', CourseController::class);
    });
     Route::group([ 'prefix' => 'admin', 'as' => 'admin.'], function() {
-        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('/register', UserController::class);
     });
 });
