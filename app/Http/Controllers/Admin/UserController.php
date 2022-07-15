@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
 class UserController extends Controller
@@ -39,24 +38,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        function create(array $input)
-        {
-            Validator::make($input, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => $this->passwordRules(),
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            ])->validate();
-    
-            return User::create([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'password' => Hash::make($input['password']),
-                'grade_id' => $input['grade_id'] ?? Null,
-                'teacher_qualification' => $input['teacher_qualification'] ?? Null,
-                'role_id' => $input['role_id'] ?? Null
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required| string| email| max:255| unique:users',
+        ]);
+             User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'role_id' => $request['role_id'] ?? Null
             ]);
-        }
+            return 123;
+        
     }
 
     /**
