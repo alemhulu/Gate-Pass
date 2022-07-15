@@ -38,8 +38,8 @@
                 <select name="role_id" x-model="role_id"
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     <option value="">Select User Type</option>
-                    <option value="2">Student</option>
-                    <option value="3">Teacher</option>
+                    <option value="2">receptionist</option>
+                    <option value="3">staff</option>
                 </select>
             </div>
 

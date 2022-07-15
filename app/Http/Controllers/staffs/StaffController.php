@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Teachers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 
-class CourseController extends Controller
+class StaffController extends Controller
 {
     public function index()
     {
@@ -13,6 +13,6 @@ class CourseController extends Controller
             abort(403);
         }
 
-        return view('teacher.courses.index');
+        return view('staffs.staff.index');
     }
 }
