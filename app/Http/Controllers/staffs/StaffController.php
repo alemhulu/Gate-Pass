@@ -13,6 +13,6 @@ class CourseController extends Controller
             abort(403);
         }
 
-        return view('teacher.courses.index');
+        return view('staffs.staff.index');
     }
 }

@@ -26,10 +26,10 @@ use App\Http\Controllers\HomeController;
 
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::group(['prefix' => 'student', 'as' => 'student.'], function() {
+    Route::group(['prefix' => 'receptionists', 'as' => 'receptionists.'], function() {
         Route::resource('lessons', LessonController::class);
     });
-   Route::group(['prefix' => 'teacher', 'as' => 'teacher.'], function() {
+   Route::group(['prefix' => 'staffs', 'as' => 'staffs.'], function() {
        Route::resource('courses', CourseController::class);
    });
     Route::group([ 'prefix' => 'admin', 'as' => 'admin.'], function() {

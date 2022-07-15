@@ -9,7 +9,7 @@ class LessonController extends Controller
 
     public function index()
     {
-        return view('student.lessons.index');
+        return view('receptionists.receptionist.index');
     }
 
 }
