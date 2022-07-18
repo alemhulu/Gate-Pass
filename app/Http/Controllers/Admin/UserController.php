@@ -14,7 +14,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.users.index');
+        $users=User::all();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -38,7 +39,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
+        if (Gate::denies('manage-users')) {
+            abort(403);
+        }
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required| string| email| max:255| unique:users',
@@ -49,7 +52,8 @@ class UserController extends Controller
                 'password' => Hash::make($request['password']),
                 'role_id' => $request['role_id'] ?? Null
             ]);
-            return 123;
+        
+            return redirect('/admin/users');
         
     }
 
@@ -61,7 +65,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -72,7 +76,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -95,6 +99,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
     }
 } 

@@ -37,7 +37,17 @@
                     required />
             </div></div>
                
-              
+                <div>
+                <label class="block text-sm font-bold text-gray-700" for="department" >
+                  Department
+                </label>
+
+                <input
+                  class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-left focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  type="text" name="department" placeholder="Enter Name" />
+              </div>
+               
+
                 <div class="mt-4">
                 <x-jet-label class="block text-sm font-bold text-gray-700" for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"  placeholder="Enter password" required
