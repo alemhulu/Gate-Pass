@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Teachers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 
-class CourseController extends Controller
+class StaffController extends Controller
 {
     public function index()
     {

@@ -14,18 +14,19 @@
               Create Post
             </h1>
           </div> --}}
-
+           <x-jet-validation-errors class="mb-4" />
           <div class="w-full px-6 py-4 bg-gray-400 rounded shadow-md ring-1 ring-gray-900/10">
-            <form method="POST" action="#">
+            <form method="POST" action="/admin/users">
               <!-- Title -->
+              @csrf
               <div>
-                <label class="block text-sm font-bold text-gray-700" for="Name">
+                <label class="block text-sm font-bold text-gray-700" for="Name" >
                   Name
                 </label>
 
                 <input
                   class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-left focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                  type="text" name="email" placeholder="Enter Name" />
+                  type="text" name="name" placeholder="Enter Name" />
               </div>
                
              <div>
@@ -36,7 +37,17 @@
                     required />
             </div></div>
                
-              
+                <div>
+                <label class="block text-sm font-bold text-gray-700" for="department" >
+                  Department
+                </label>
+
+                <input
+                  class="block w-full mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-left focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  type="text" name="department" placeholder="Enter Name" />
+              </div>
+               
+
                 <div class="mt-4">
                 <x-jet-label class="block text-sm font-bold text-gray-700" for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"  placeholder="Enter password" required
