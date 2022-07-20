@@ -74,9 +74,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return $id;
+        
+        return view('admin.users.edit',compact('user'));
     }
 
     /**
@@ -86,8 +87,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
+        if (Gate::denies('manage-users')) {
+            abort(403);
+        }
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required| string| email| max:255| unique:users',
+        ]);
+             User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'role_id' => $request['role_id'] ?? Null
+            ]);
+        
+           $user->save();
+           return redirect('/admin/users/edit');
         //
     }
 
@@ -97,8 +114,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(user $user)
     {
-        return $id;
+        
+        $user->delete();
+        return redirect('/admin/users');
     }
 } 

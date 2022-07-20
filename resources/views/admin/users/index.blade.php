@@ -33,6 +33,10 @@
 
                                 <th
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    Department</th>
+
+                                <th
+                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Created_At</th>
                                 <th class="px-6 py-3 text-sm text-left text-gray-500 border-b border-gray-200 bg-gray-50"
                                     colspan="3">
@@ -60,8 +64,14 @@
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <p>{{ $user->email }}
                                     </p>
-                                </td> <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                </td>
+                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <p>{{ $user->role->name}}
+                                    </p>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <p>{{ $user->department}}
                                     </p>
                                 </td>
 
@@ -73,7 +83,7 @@
 
                                 <td
                                     class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                    <a href="/admin/users/{{ $user->id }}/edit" class="text-indigo-600 hover:text-indigo-900">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -83,7 +93,7 @@
 
                                 <td
                                     class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href="#" class="text-gray-600 hover:text-gray-900">
+                                    <a href=" /admin/users/{{ $user->id }}" class="text-gray-600 hover:text-gray-900">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -97,7 +107,7 @@
 
                                 </td>
                                 <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                    <a href=" /admin/users/{{ $user->id }}"><svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-6 h-6 text-red-600 hover:text-red-800" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

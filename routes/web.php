@@ -36,6 +36,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('users', UserController::class);
     });
      Route::get('/',[HomeController::class,'index'])->name('dashboard');
+
+     
+    Route::get('/admin/users/destroy/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('dedtroy');
+
     // Route::post('/visit/view', [App\Http\Controllers\HomeController::class, 'view'])->name('view');
 
     // Route::post('/visit/viewcode', [App\Http\Controllers\ViewCodeController::class, 'viewcode'])->name('viewcode');
