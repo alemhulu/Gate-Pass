@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::delete('/admin/user/{id}', UserController@destroy)->name("user-delete" );
 
     Route::resources([
-        'admin.users'  => UserController::class,
+        'admin-users'  => UserController::class,
 
         
     ]);
