@@ -32,13 +32,13 @@ Route::group(['middleware' => 'auth'], function() {
 //    Route::group(['prefix' => 'staffs', 'as' => 'staffs.'], function() {
 //        Route::resource('staff', StaffController::class);
 //    });
-    Route::group([ 'prefix' => 'admin', 'as' => 'admin.'], function() {
-        Route::resource('users', UserController::class);
-    });
+    // Route::group([ 'prefix' => 'admin', 'as' => 'admin.'], function() {
+    //     Route::resource('users', UserController::class);
+    // });
      Route::get('/',[HomeController::class,'index'])->name('dashboard');
 
      
-    Route::get('/admin/users/destroy/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('dedtroy');
+    // Route::get('/admin/users/destroy/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('dedtroy');
 
     // Route::post('/visit/view', [App\Http\Controllers\HomeController::class, 'view'])->name('view');
 
@@ -46,13 +46,21 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Route::get('/visits', [App\Http\Controllers\VisitController::class, 'visits'])->name('visits');
 
-    // Route::get('/visit/create', [App\Http\Controllers\VisitController::class, 'create'])->name('visit.create');
+    
 
-    // Route::post('/visit/store', [App\Http\Controllers\VisitController::class, 'store'])->name('store');
+    // Route::get('/admin/user/create', [UserController::class, 'create'])->name('user.create');
 
-    // Route::post('/visit/edit', [App\Http\Controllers\VisitController::class, 'edit'])->name('edit');
+    // Route::post('/admin/user/store', [UserController::class, 'store'])->name('store');
 
-    // Route::get('/visit/delete/{id}', [App\Http\Controllers\VisitController::class, 'delete'])->name('delete');
+    // Route::post('/admin/user/edit', [UserController::class, 'update'])->name('edit');
+
+    // Route::delete('/admin/user/{id}', UserController@destroy)->name("user-delete" );
+
+    Route::resources([
+        'admin.users'  => UserController::class,
+
+        
+    ]);
 
     // Route::get('changeStatus', [App\Http\Controllers\HomeController::class, 'changeStatus'])->name('changeStatus');
 });
