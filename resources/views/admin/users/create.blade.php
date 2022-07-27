@@ -4,7 +4,8 @@
             {{ __('Add Users') }}
         </h2>
     </x-slot>
-    
+
+     
     <!-- Create Post -->
     <div>
       {{-- <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0">
@@ -14,8 +15,14 @@
               Create Post
             </h1>
           </div> --}}
+           <div class="flex justify-end">
+            <button type="submit"
+                  class="px-6 py-2 text-sm font-semibold align:right text-gray-100 bg-red-700 rounded-md shadow-md hover:bg-red-300 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                   <a href="/admin/users">Back</a>
+                </button>
+          </div>
            <x-jet-validation-errors class="mb-4" />
-          <div class="w-full px-6 py-4 bg-gray-400 rounded shadow-md ring-1 ring-gray-900/10">
+          <div class="w-full px-7 py-4 bg-gray-400 rounded shadow-md ring-1 ring-gray-900/10 mx-auto">
             <form method="POST" action="/admin/users">
               <!-- Title -->
               @csrf
@@ -76,8 +83,10 @@
                 <select name="role_id" x-model="role_id"
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     {{-- <option value="">Select User Type</option> --}}
-                    <option value="2">receptionist</option>
-                    <option value="3">staff</option>
+                    @foreach ( $roles as $role)
+                      <option value="{{ $role->id }}">{{ $role->name }}</option>
+                    @endforeach
+                    
                 </select>
             </div>
 

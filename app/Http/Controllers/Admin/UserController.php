@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -28,7 +29,9 @@ class UserController extends Controller
         if (Gate::denies('manage-users')) {
             abort(403);
         }
-        return view('admin.users.create');
+
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -49,11 +52,14 @@ class UserController extends Controller
              User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
+                'department' => $request['department'],
                 'password' => Hash::make($request['password']),
                 'role_id' => $request['role_id'] ?? Null
             ]);
         
-            return redirect('/admin/users');
+            return redirect()->route('admin.users.index')
+->with('success','user has been created successfully.');
+
         
     }
 
@@ -63,9 +69,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id )
     {
-        return $id;
+        $user = User::findorFail($id);
+   
+         return view('admin.users.show',compact('user'));
+        
     }
 
     /**
@@ -76,7 +85,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return $id;
+        $user = User::findorFail($id);
+        return view('admin.users.edit',compact('user'));
     }
 
     /**
@@ -86,9 +96,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( Request $request, $id)
     {
-        //
+        {
+            $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'department'=>'required',
+            'password'=>'same:confirm-password'
+            ]);
+
+            $user = User::findorFail($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->department = $request->department;
+            $user->password = Hash::make($request['password']);
+
+            $user->save();
+            return redirect()->route('admin.users.index')
+            ->with('success','user Has Been updated successfully');
+            }
     }
 
     /**
@@ -99,6 +126,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return $id;
+        $user = User::findorFail($id);
+
+        $user->delete();
+        return back()
+        ->with('success','User has been deleted successfully');
     }
 } 

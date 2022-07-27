@@ -28,8 +28,8 @@
                 @livewire('navigation-menu')
                 <!-- Page Heading -->
                 @if (isset($header))
-                <header class="bg-white shadow mx-3 rounded-lg">
-                    <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8 horizontal-btn-active rounded-lg">
+                <header class="my-3 bg-white shadow mx-3 rounded-lg bg-yellow-400">
+                    <div class="mx-auto py-4 px-4 sm:px-6 lg:px-8 horizontal-btn-active rounded-lg ">
                         {{ $header }}
                     </div>
                 </header>
