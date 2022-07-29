@@ -8,6 +8,7 @@ use App\Models\Visit;
 use DateTime;
 use Andegna;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class VisitController extends Controller
 {
@@ -39,7 +40,7 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         
-	   
+	//   
         $validator = $request->validate(
             [
             'visitors' => 'required',
@@ -53,24 +54,24 @@ class VisitController extends Controller
             ]
         );
 
-         $visitors = "";
+        //  $visitors = "";
 
-         $hasCar = 0;
+        $hasCar = 0;
 
-         $plates = ""; 
+        $plates = ""; 
 
-         $status = 0; //Visit status, 0: NOT CHECKED IN, 1: CHECKED IN
+        // $status = 0; //Visit status, 0: NOT CHECKED IN, 1: CHECKED IN
         
-        //Concatenate visitors names and Plate numbers with #
-        /*
-            *later will be exploded with # delimeter
-        */
-        foreach($request->visitors as $visitor)
-        {
-            $visitors .= "#";
+        // //Concatenate visitors names and Plate numbers with #
+        // /*
+        //     *later will be exploded with # delimeter
+        // */
+        // foreach($request->visitors as $visitor)
+        // {
+        //     $visitors .= "#";
 
-            $visitors .=  $visitor;
-        }
+        //     $visitors .=  $visitor;
+        // }
 
         if($request->hasCar=="on")
         {
@@ -100,7 +101,6 @@ class VisitController extends Controller
         //Create Ethiopian Date
 
         
-
         $ethiopianDate = Andegna\DateTimeFactory::of($request->year, $request->month,  $request->day);
        
         $date = $ethiopianDate->toGregorian();
@@ -108,24 +108,26 @@ class VisitController extends Controller
         //phone number
         $contact_number = $request->contact_number;
 
-
+        
         //Create New visit
-
+       
         $visit = Visit::create([
-            'requestor_id' => Auth::user()->id,
+            'requestor_id' => FacadesAuth::user()->id,
             'request_date' => $today,
-            'visitor_list' => $visitors,
+            'visitor_list' => $request->visitors,
             'contact_number' => $contact_number,
             'visit_date'   => $date,
             'has_car'      => $hasCar,
             'code'         => $accessCode,
-            'plates'       => $plates,
-            'status'       => $status  
+            'plates'       => $request->plates,
+            'status'       => 1 ,
         ]);
 
+      
+       
         $visit->save();
         
-        return redirect('/home');
+        return redirect(route('visit.index'));
     }
 
     public function edit(Request $request)
@@ -177,14 +179,14 @@ class VisitController extends Controller
 
         $visit->save();
 
-        return redirect('/home');
+        return redirect(route('visit.index'));
     }
 
-    public function delete ($id) {
+    public function destroy ($id) {
         
         $visit = Visit::findorfail($id);
         $visit->delete();
-        return redirect('/home')->with('success', 'መግቢያው ተሰርዙዋል');
+        return back()->with('success', 'መግቢያው ተሰርዙዋል');
             
     }    
 

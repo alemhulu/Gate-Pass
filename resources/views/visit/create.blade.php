@@ -29,41 +29,28 @@
     </div>
     <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('visit') }}:</label>
     <div>
-
       <div class="mt-2 ">
         <select id="month" name="month">
           @foreach($months as $key=>$month)
-          <option value="{{$key+1}}" <?php if ($month==$ethipic->getTextualMonth()){
-            echo'selected';
-            }
-            ?>
-            >{{$month}}</option>
+          <option value={{$key+1}} @if ($month===$ethipic->getTextualMonth())
+            selected
+            @endif>{{$month}}</option>
           @endforeach
         </select>
 
         <select id="day" name="day">
-          @for($i=1; $i <= 30; $i++) <option value="{{$i}}" <?php if ($i==$ethipic->getDayTwoDigit()){
-            echo'selected';
-            }
-            ?>
-            >{{$i}}</option>
+          @for($i=1; $i <= 30; $i++) <option value={{$i}} @if ($i===$ethipic->getDayTwoDigit())
+            selected
+            @endif>{{$i}}</option>
             @endfor
-
-
         </select>
 
-
-        <select id="year" name="day">
-          @for($i=2014; $i <=2024 ; $i++) <option value="{{$i}}" <?php if ($i==$ethipic->getYear()){
-            echo'selected';
-            }
-            ?>
-            >{{$i}}</option>
+        <select id="year" name="year">
+          @for($i=2014; $i <=2024 ; $i++) <option value={{$i}} @if ($i===$ethipic->getYear())
+            selected
+            @endif >{{$i}}</option>
             @endfor
-
-
         </select>
-
       </div>
     </div>
 
@@ -72,7 +59,7 @@
       <div>
         <input
           class="block w-70% mt-2 h-10 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          type="name" name={{ __('visitors_full_name') }} />
+          type="name" name="visitors" />
       </div>
     </div>
 
@@ -81,27 +68,27 @@
       <div>
         <input
           class="block w-70% mt-2 h-10 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          type="name" name={{ __('contact_number') }} />
+          type="name" name="contact_number" />
       </div>
     </div>
 
     <div class="block">
       <div class="mt-2">
         <label class="inline-flex items-center">
-          <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" />
+          <input type="checkbox" id="chkPassport" name="has_car" onclick="ShowHideDiv(this)" />
           <span class="ml-2">has car</span>
         </label>
       </div>
     </div>
 
     <div id="dvPassport" style="display: none">
-      <label class="block text-sm font-bold text-gray-700" for="car-plate">
+      <label class="block text-sm font-bold text-gray-700" for="plates">
         {{ __('Car-plate') }}
       </label>
 
       <input
         class="block w-1000 mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-left focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-        type="text" name={{ __('car-plate') }} placeholder={{ __('Enter car-plate') }} />
+        type="text" name="plates" placeholder="{{ __('Enter car-plate') }}" />
     </div>
 
     <div class="flex items-center justify-start mt-4 gap-x-2">
