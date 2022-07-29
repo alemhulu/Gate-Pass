@@ -24,7 +24,7 @@
 
         <div class="flex justify-end">
             <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
-                    href="{{ route('admin-users.create') }}">create Post</a> </button>
+                    href="{{ route('admin-users.create') }}">create users</a> </button>
         </div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
