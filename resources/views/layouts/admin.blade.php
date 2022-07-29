@@ -28,7 +28,7 @@
                 @livewire('navigation-menu')
                 <!-- Page Heading -->
                 @if (isset($header))
-                <header class="my-3 bg-white shadow mx-3 rounded-lg bg-yellow-400">
+                <header class="my-3 shadow mx-3 rounded-lg bg-yellow-400">
                     <div class="mx-auto py-4 px-4 sm:px-6 lg:px-8 horizontal-btn-active rounded-lg ">
                         {{ $header }}
                     </div>
@@ -47,8 +47,7 @@
         @livewireScripts
         <script src="/js/tabs.js"></script>
         <script>
-    
-        var form = $('#request-form'),
+            var form = $('#request-form'),
         checkbox = $('#hasCar'),
         chShipBlock = $('#plateNumberBlock');
 
@@ -63,9 +62,9 @@
             chShipBlock.find('input').attr('required', false);
         }
         });
-</script>
-<script>
-    $('#plateNumber').select2({
+        </script>
+        <script>
+            $('#plateNumber').select2({
     tags: true,
     tokenSeparators: [','], 
     placeholder: "አንዱን ታረጋ አስገብተው ሲጨርሱ 'Enter' ይጫኑ",
@@ -73,9 +72,9 @@
     selectOnClose: false, 
     closeOnSelect: false
     });
-</script>
-<script>
-    $('#visitors').select2({
+        </script>
+        <script>
+            $('#visitors').select2({
     tags: true,
     tokenSeparators: [','], 
     placeholder: "አንዱን ስም አስገብተው ሲጨርሱ 'Enter' ይጫኑ",
@@ -83,7 +82,7 @@
     selectOnClose: false, 
     closeOnSelect: false
     });
-</script>
+        </script>
     </body>
 
 </html>
