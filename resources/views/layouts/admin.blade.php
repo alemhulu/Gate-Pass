@@ -46,6 +46,44 @@
 
         @livewireScripts
         <script src="/js/tabs.js"></script>
+        <script>
+    
+        var form = $('#request-form'),
+        checkbox = $('#hasCar'),
+        chShipBlock = $('#plateNumberBlock');
+
+        chShipBlock.hide();
+
+        checkbox.on('click', function() {
+        if($(this).is(':checked')) {
+            chShipBlock.show();
+            chShipBlock.find('input').attr('required', true);
+        } else {
+            chShipBlock.hide();
+            chShipBlock.find('input').attr('required', false);
+        }
+        });
+</script>
+<script>
+    $('#plateNumber').select2({
+    tags: true,
+    tokenSeparators: [','], 
+    placeholder: "አንዱን ታረጋ አስገብተው ሲጨርሱ 'Enter' ይጫኑ",
+    /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
+    selectOnClose: false, 
+    closeOnSelect: false
+    });
+</script>
+<script>
+    $('#visitors').select2({
+    tags: true,
+    tokenSeparators: [','], 
+    placeholder: "አንዱን ስም አስገብተው ሲጨርሱ 'Enter' ይጫኑ",
+    /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
+    selectOnClose: false, 
+    closeOnSelect: false
+    });
+</script>
     </body>
 
 </html>

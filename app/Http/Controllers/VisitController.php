@@ -12,26 +12,26 @@ use Auth;
 class VisitController extends Controller
 {
     //
-    public function __construct()
-    {
-        $this->middleware('permission:visit-list|visit-create|visit-edit|visit-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:visit-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:visit-delete', ['only' => ['delete']]);
-        $this->middleware('permission:visit-create', ['only' => ['create','store']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('permission:visit-list|visit-create|visit-edit|visit-delete', ['only' => ['index','show']]);
+    //     $this->middleware('permission:visit-edit', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:visit-delete', ['only' => ['delete']]);
+    //     $this->middleware('permission:visit-create', ['only' => ['create','store']]);
+    // }
 
     public function index()
     {
       
     	$visits = Visit::all();
 
-    	return $visits;
+    	return view('visit.index', compact('visits')) ;
     	
     }
 
     public function create()
     {
-        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሀምሌ", "ነሐሴ"];
+        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሐምሌ", "ነሐሴ"];
 
     	return view('visit.create', compact('months'));
     }
@@ -181,6 +181,7 @@ class VisitController extends Controller
     }
 
     public function delete ($id) {
+        
         $visit = Visit::findorfail($id);
         $visit->delete();
         return redirect('/home')->with('success', 'መግቢያው ተሰርዙዋል');

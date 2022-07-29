@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2069a4a90f1199005192587b5e7f88de",
+    "content-hash": "a7be460369034d15fea6e28256871987",
     "packages": [
+        {
+            "name": "andegna/calender",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andegna/calender.git",
+                "reference": "83c49e6c8b32f46256d5c912847f05b9c1b54e0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andegna/calender/zipball/83c49e6c8b32f46256d5c912847f05b9c1b54e0d",
+                "reference": "83c49e6c8b32f46256d5c912847f05b9c1b54e0d",
+                "shasum": ""
+            },
+            "require": {
+                "geezify/geezify-php": "^1.2",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "develop": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Andegna\\": "src/",
+                    "Andegna\\PHPUnit\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam As End",
+                    "email": "4sam21@gmail.com"
+                }
+            ],
+            "description": "If you ever want to convert Ethiopian Calender to any other calender system (like the Gregorian Calender) this is the right package for you. And by the way it also support Amharic date formatting and much much more.",
+            "keywords": [
+                "JDN",
+                "calender",
+                "date",
+                "ethiopian"
+            ],
+            "support": {
+                "issues": "https://github.com/andegna/calender/issues",
+                "source": "https://github.com/andegna/calender"
+            },
+            "time": "2021-08-16T01:42:52+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "2.0.7",
@@ -608,6 +664,65 @@
                 }
             ],
             "time": "2022-02-20T15:07:15+00:00"
+        },
+        {
+            "name": "geezify/geezify-php",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geezify/geezify-php.git",
+                "reference": "2901449a22f9e88b58daad0b13770f322495a76d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geezify/geezify-php/zipball/2901449a22f9e88b58daad0b13770f322495a76d",
+                "reference": "2901449a22f9e88b58daad0b13770f322495a76d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6|7.*"
+            },
+            "provide": {
+                "andegna/geezify": "self.version"
+            },
+            "replace": {
+                "andegna/geezify": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Geezify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam As End",
+                    "email": "4sam21@gmail.com"
+                }
+            ],
+            "description": "A library to convert ascii number like '3456' to geez number '፴፬፻፶፮' and vise versa.",
+            "keywords": [
+                "ethiopian",
+                "geez",
+                "geezify"
+            ],
+            "support": {
+                "issues": "https://github.com/geezify/geezify-php/issues",
+                "source": "https://github.com/geezify/geezify-php/tree/develop"
+            },
+            "time": "2017-02-24T13:52:50+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -2040,6 +2155,82 @@
                 }
             ],
             "time": "2022-06-19T02:54:20+00:00"
+        },
+        {
+            "name": "mcamara/laravel-localization",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcamara/laravel-localization.git",
+                "reference": "27565315c585e90d8d93aa06afd49d6a5992fe5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcamara/laravel-localization/zipball/27565315c585e90d8d93aa06afd49d6a5992fe5a",
+                "reference": "27565315c585e90d8d93aa06afd49d6a5992fe5a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.2.0||~5.3.0||~5.4.0||~5.5.0||~5.6.0||~5.7.0||~5.8.0||^6.0||^7.0||^8.0||^9.0",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench-browser-kit": "~3.4|~3.8|~4.0",
+                "phpunit/phpunit": "6.0.*|^8.0"
+            },
+            "suggest": {
+                "ext-intl": "*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelLocalization": "Mcamara\\LaravelLocalization\\Facades\\LaravelLocalization"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mcamara\\LaravelLocalization": "src/"
+                },
+                "classmap": []
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Cámara",
+                    "email": "mcamara88@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easy localization for Laravel",
+            "homepage": "https://github.com/mcamara/laravel-localization",
+            "keywords": [
+                "laravel",
+                "localization",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/mcamara/laravel-localization/issues",
+                "source": "https://github.com/mcamara/laravel-localization/tree/v1.7.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/iwasherefirst2",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/mcamara",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-01-26T10:27:45+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
