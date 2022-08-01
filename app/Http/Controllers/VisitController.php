@@ -130,7 +130,18 @@ class VisitController extends Controller
         return redirect(route('visit.index'));
     }
 
-    public function edit(Request $request)
+    public function edit($id)
+    {
+             
+        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሀምሌ", "ነሐሴ"];
+
+        $visit = Visit::findorFail($id);
+
+        return view('visit.edit',compact('visit','months'));
+    }
+
+
+    public function update(Request $request)
     {
        
         $visit = Visit::findorfail($request->id);
