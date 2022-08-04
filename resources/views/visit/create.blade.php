@@ -27,7 +27,7 @@
         <a href="{{ route('visit.index') }}">Back</a>
       </button>
     </div>
-    <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('visit') }}:</label>
+    <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('visit date') }}:</label>
     <div>
       <div class="mt-2 ">
         <select id="month" name="month">
@@ -53,7 +53,8 @@
         </select>
       </div>
     </div>
-
+    
+   
     <div class="mt-4">
       <label for="visitors" class="col-md-4 col-form-label text-md-right">{{ __('visitors_full_name') }}:</label>
       <div>

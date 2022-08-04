@@ -173,7 +173,7 @@ class VisitController extends Controller
                 
                 $visit->plates = $plates;
             }
-
+            return('$ethipic->getYear()');
             
         }
 
