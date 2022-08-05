@@ -25,7 +25,7 @@ class visit extends Model
 
     public function user()
     {
-    	return $this->hasOne('App\Models\User','id','requestor_id');
+    	return $this->belongsTo(User::class,'requestor_id');
     }
 
 

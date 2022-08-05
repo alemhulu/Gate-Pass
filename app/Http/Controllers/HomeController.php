@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\MonthlyUsersChart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -19,10 +20,11 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+
+    public function index(MonthlyUsersChart $chart)
     {
         $visits = Visit::all();
-        return view('dashboard',compact('visits'));
+        return view('dashboard',['chart' => $chart->build()]);
     }
 
     /**

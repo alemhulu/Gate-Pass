@@ -45,7 +45,10 @@ class VisitController extends Controller
                 'visitors' => 'required',
                 'year' => 'required',
                 'month' => 'required',
-                'day' => 'required'
+                'day' => 'required',
+                'contact_number' => 'required|min:10|max:10',
+                'plates'=>'nullable'
+
             ],
 
             [
@@ -54,8 +57,8 @@ class VisitController extends Controller
         );
 
         //  $visitors = "";
-
-        $hasCar = 0;
+ 
+        // $hasCar = 0;
 
         $plates = "";
 
@@ -72,16 +75,20 @@ class VisitController extends Controller
         //     $visitors .=  $visitor;
         // }
 
-        if ($request->hasCar == "on") {
+        if ($request->has_car == 1) {
             $hasCar = 1;
 
-            if (isset($request->plates)) {
-                foreach ($request->plates as $plate) {
-                    $plates .= "#";
+            // if (isset($request->plates)) {
+            //     foreach ($request->plates as $plate) {
+            //         $plates .= "#";
 
-                    $plates .= $plate;
-                }
-            }
+            //         $plates .= $plate;
+            //     }
+            // }
+        }
+        
+        if ($request->has_car == null) {
+            $hasCar = 0;
         }
 
         //Generate Access Code
@@ -130,18 +137,19 @@ class VisitController extends Controller
 
         $visit = Visit::findorfail($id);
 
+        $months = ["መስከረም", "ጥቅምት", "ህዳር", "ታህሳስ", "ጥር", "የካቲት", "መጋቢት", "ሚያዚያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ"];
 
-        $visit->save();
-
-        return view('visit.edit');
+        return view('visit.edit', compact('months','visit'));
     }
 
     public function update(Request $request, $id)
     {
 
         $visit = Visit::findorfail($id);
-
+        $today = Carbon::now();
         $ethiopianDate = Andegna\DateTimeFactory::of($request->year, $request->month,  $request->day);
+
+        $date = $ethiopianDate->toGregorian();
 
         $visit_date = $ethiopianDate->toGregorian();
 
@@ -149,35 +157,18 @@ class VisitController extends Controller
 
         $visit->contact_number = $request->contact_number;
 
+        $hasCar = 0;
+
         $visitors = "";
 
         $plates = "";
-
-        foreach ($request->visitors as $visitor) {
-            $visitors .= "#";
-
-            $visitors .=  $visitor;
-        }
-
-        $visit->visitor_list = $visitors;
-
-
-        if (isset($request->plates)) {
-
-            $visit->has_car = 1;
-
-            if (isset($request->plates)) {
-                foreach ($request->plates as $plate) {
-                    $plates .= "#";
-
-                    $plates .= $plate;
-                }
-
-                $visit->plates = $plates;
-            }
-            return ('$ethipic->getYear()');
-        }
-
+        
+        $visit->visitor_list = $request->visitors;
+        $visit->contact_number = $request->contact_number;
+        $visit->visit_date = $date;
+        $visit->has_car = $hasCar;
+        $visit->plates = $request->plates;
+       
         $visit->save();
 
         return redirect(route('visit.index'))->with('success', 'መግቢያው ተስተካክሏል');;

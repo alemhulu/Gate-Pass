@@ -4,7 +4,7 @@
             {{ __('visitors List') }}
         </h2>
     </x-slot>
-
+  
 
     <div>
         @if (session('success'))
@@ -28,14 +28,10 @@
         </div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                <div class="w-full overflow-auto align-middle border-b border-gray-200 shadow sm:rounded-lg">
+                <div class="w-full overflow-auto align-middle border-gray-200 shadow sm:rounded-lg">
                     <table class="w-full">
                         <thead>
                             <tr>
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('#') }}
-                                </th>
 
                                 <th
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
@@ -60,11 +56,6 @@
                                 <th
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     {{ __('contact_number') }}
-                                </th>
-
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('Vehicles') }}
                                 </th>
 
                                 <th
@@ -94,14 +85,15 @@
                             <?php $i = 1; ?>
                             @foreach ($visits as $visit)
                                 <tr>
-                                    <td class="px-6 py-4  border border-gray-200">
+                                    {{-- <td class="px-6 py-4  border border-gray-200">
                                         <div class="flex items-center">
                                             {{ $i++ }}
                                         </div>
-                                    </td>
+                                    </td> --}}
 
                                     <td class="px-6 py-4  border border-gray-200">
-                                        <div class="text-sm leading-5 text-gray-900">{{ $visit->requestor_id }}
+                                        <div class="text-sm leading-5 text-gray-900">
+                                        {{ $visit->user->name }} : {{ $visit->user->department }}
                                         </div>
                                     </td>
 
@@ -125,27 +117,11 @@
                                     </td>
 
                                     <td class="px-6 py-4  border border-gray-200">
-                                        <ul style="list-style-type: circle; ">
-                                            @if ($visit->has_car == 0)
-                                                <p style=>
-                                                    የለም
-                                                </p>
-                                            @else
-                                                @foreach (explode('#', $visit->plates) as $key => $plate)
-                                                    @if ($key > 0)
-                                                        <li>{{ $plates }}</li>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        </ul>
-                                    </td>
-
-                                    <td class="px-6 py-4  border border-gray-200">
                                         <span>{{ $visit->code }}</span>
                                     </td>
 
                                     <td class="px-6 py-4  border border-gray-200">
-                                        <span>{{ $visit->plates }}</span>
+                                        <span>{{ $visit->plates ?? "null"}}</span>
                                     </td>
 
                                     <td class="border border-gray-200 h-full">

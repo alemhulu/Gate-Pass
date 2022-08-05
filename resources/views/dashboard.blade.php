@@ -5,10 +5,20 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+                <div class="container px-4 mx-auto">
+
+                    <div class="p-1 m-1 bg-white rounded shadow">
+                        {!! $chart->container() !!}
+                    </div>
+
+
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
+                </div>
             </div>
         </div>
     </div>

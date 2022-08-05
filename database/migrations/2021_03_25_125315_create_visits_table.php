@@ -18,11 +18,11 @@ class CreateVisitsTable extends Migration
             $table->integer('requestor_id')->references('id')->on('users');
             $table->date('request_date');
             $table->string('visitor_list');
-            $table->integer('contact_number');
+            $table->string('contact_number')->nullable();
             $table->date('visit_date');
             $table->boolean('has_car');
             $table->integer('code');
-            $table->string('plates');
+            $table->string('plates')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });
