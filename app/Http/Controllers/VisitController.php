@@ -23,23 +23,18 @@ class VisitController extends Controller
 
     public function index()
     {
-
         $visits = Visit::all();
-
         return view('visit.index', compact('visits'));
     }
 
     public function create()
     {
         $months = ["መስከረም", "ጥቅምት", "ህዳር", "ታህሳስ", "ጥር", "የካቲት", "መጋቢት", "ሚያዚያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ"];
-
         return view('visit.create', compact('months'));
     }
 
     public function store(Request $request)
     {
-
-        //   
         $validator = $request->validate(
             [
                 'visitors' => 'required',
@@ -57,13 +52,10 @@ class VisitController extends Controller
         );
 
         //  $visitors = "";
- 
         // $hasCar = 0;
 
         $plates = "";
-
         // $status = 0; //Visit status, 0: NOT CHECKED IN, 1: CHECKED IN
-
         // //Concatenate visitors names and Plate numbers with #
         // /*
         //     *later will be exploded with # delimeter
@@ -92,33 +84,21 @@ class VisitController extends Controller
         }
 
         //Generate Access Code
-
         $randomNumber = mt_rand(100, 999); //Random 3 digits
-
         $today = Carbon::now();
-
         $seconds = substr($today->timestamp, 8); //Seconds from time Stamp
-
         $accessCode = $randomNumber . $seconds; //concatenate randomNumber and Seconds
 
         //Create Ethiopian Date
-
-
         $ethiopianDate = Andegna\DateTimeFactory::of($request->year, $request->month,  $request->day);
-
         $date = $ethiopianDate->toGregorian();
 
-        //phone number
-        $contact_number = $request->contact_number;
-
-
         //Create New visit
-
         $visit = Visit::create([
             'requestor_id' => FacadesAuth::user()->id,
             'request_date' => $today,
             'visitor_list' => $request->visitors,
-            'contact_number' => $contact_number,
+            'contact_number' => $request->contact_number,
             'visit_date'   => $date,
             'has_car'      => $hasCar,
             'code'         => $accessCode,
@@ -145,16 +125,16 @@ class VisitController extends Controller
     }
 
 
-    public function update(Request $request)
+    // public function update(Request $request)
 
-    {
+    // {
 
-        $visit = Visit::findorfail($id);
+    //     $visit = Visit::findorfail($id);
 
-        $months = ["መስከረም", "ጥቅምት", "ህዳር", "ታህሳስ", "ጥር", "የካቲት", "መጋቢት", "ሚያዚያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ"];
+    //     $months = ["መስከረም", "ጥቅምት", "ህዳር", "ታህሳስ", "ጥር", "የካቲት", "መጋቢት", "ሚያዚያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ"];
 
-        return view('visit.edit', compact('months','visit'));
-    }
+    //     return view('visit.edit', compact('months','visit'));
+    // }
 
     public function update(Request $request, $id)
     {
