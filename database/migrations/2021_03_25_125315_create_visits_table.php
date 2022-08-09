@@ -23,6 +23,7 @@ class CreateVisitsTable extends Migration
             $table->boolean('has_car');
             $table->integer('code');
             $table->string('plates')->nullable();
+            $table->string('qr_image')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

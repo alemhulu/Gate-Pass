@@ -19,7 +19,8 @@ class visit extends Model
         'has_car',
         'code',
         'plates',
-        'status'
+        'status',
+        'qr_image'
     ];
 
 

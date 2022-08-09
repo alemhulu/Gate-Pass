@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f54e231fcbce7d296594e9d7cb1e197",
+    "content-hash": "2c20db143d8bf1a5e864dadd246f5676",
     "packages": [
         {
             "name": "andegna/calender",

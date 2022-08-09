@@ -23,21 +23,22 @@
         </button>
     </div>
 
-@if($errors->any())
+    @if($errors->any())
 
-<div>
-<div  class="font-medium text-red-600">
-{{ __('whoops!something went wrong.') }}
-</div>
+    <div>
+        <div class="font-medium text-red-600">
+            {{ __('whoops!something went wrong.') }}
+        </div>
 
-<ul class="mt-3 list-disk list-inside text-sm text-red-600"> 
-@foreach ($errors as $error )
-  <li>
-  {{ $error }}</li>
-@endforeach
-</ul>
-</div>
-@endif
+        <ul class="mt-3 list-disk list-inside text-sm text-red-600">
+            @foreach ($errors as $error )
+            <li>
+                {{ $error }}
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <!-- Create visitors -->
     <form method="post" action="{{ route('visit.update', $visit->id) }}">
@@ -49,23 +50,23 @@
             <div class="mt-2 ">
                 <select id="month" name="month">
                     @foreach ($months as $key => $month)
-                        <option value={{ $key + 1 }} @if ($month === $ethipic->getTextualMonth()) selected @endif>
-                            {{ $month }}</option>
+                    <option value={{ $key + 1 }} @if ($month===$ethipic->getTextualMonth()) selected @endif>
+                        {{ $month }}
+                    </option>
                     @endforeach
                 </select>
 
                 <select id="day" name="day">
-                    @for ($i = 1; $i <= 30; $i++)
-                        <option value={{ $i }} @if ($i === $ethipic->getDay()) selected @endif>
-                            {{ $i }}</option>
-                    @endfor
+                    @for ($i = 1; $i <= 30; $i++) <option value={{ $i }} @if ($i===$ethipic->getDay()) selected @endif>
+                        {{ $i }}</option>
+                        @endfor
                 </select>
 
                 <select id="year" name="year">
-                    @for ($i = 2014; $i <= 2024; $i++)
-                        <option value={{ $i }} @if ($i === $ethipic->getYear()) selected @endif>
-                            {{ $i }}</option>
-                    @endfor
+                    @for ($i = 2014; $i <= 2024; $i++) <option value={{ $i }} @if ($i===$ethipic->getYear()) selected
+                        @endif>
+                        {{ $i }}</option>
+                        @endfor
                 </select>
             </div>
         </div>
@@ -85,27 +86,28 @@
             <div>
                 <input
                     class="pl-3 block w-70% mt-2 h-10 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-right focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                    type="name" name="contact_number"  value="{{ $visit->contact_number }}"/>
+                    type="number" name="contact_number" value="{{ $visit->contact_number }}" />
             </div>
         </div>
 
         <div class="block">
             <div class="mt-2">
                 <label class="inline-flex items-center">
-                    <input type="checkbox" id="chkPassport" name="has_car" onclick="ShowHideDiv(this)"  value="{{ $visit->has_car }}" />
+                    <input type="checkbox" id="chkPassport" name="has_car" value="{{ $visit->has_car }}"
+                        onclick="ShowHideDiv(this)" {{ $visit->has_car === 1 ? 'checked="checked"' : '' }} />
                     <span class="ml-2">has car</span>
                 </label>
             </div>
         </div>
 
-        <div id="dvPassport" style="display: none">
+        <div id="dvPassport" class="{{ $visit->has_car === 1 ? 'block' : 'hidden' }}">
             <label class="block text-sm font-bold text-gray-700" for="plates">
                 {{ __('Car-plate') }}
             </label>
 
             <input
                 class="block w-1000 mt-1 border-gray-300 rounded-md shadow-sm placeholder:text-gray-400 placeholder:text-left focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                type="text" name="plates" placeholder="{{ __('Enter car-plate') }}"  value="{{ $visit->plates }}" />
+                type="text" name="plates" placeholder="{{ __('Enter car-plate') }}" value="{{ $visit->plates }}" />
         </div>
 
         <div class="flex items-center justify-start mt-4 gap-x-2">

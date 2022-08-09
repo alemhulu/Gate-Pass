@@ -9,6 +9,8 @@ use DateTime;
 use Andegna;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use SimpleSoftwareIO\QrCode\QrCodeBuilder;
 
 class VisitController extends Controller
 {
@@ -23,7 +25,7 @@ class VisitController extends Controller
 
     public function index()
     {
-        $visits = Visit::all();
+        $visits = Visit::latest('updated_at')->get();
         return view('visit.index', compact('visits'));
     }
 
@@ -93,6 +95,16 @@ class VisitController extends Controller
         $ethiopianDate = Andegna\DateTimeFactory::of($request->year, $request->month,  $request->day);
         $date = $ethiopianDate->toGregorian();
 
+        $time = time();
+
+        // create a folder
+        if(!\File::exists(public_path('images'))) {
+            \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
+        }
+
+        $qrcode = QrCode::size(400)->generate($accessCode, 'images/'.$time.'.svg');
+        $qr_image = '/images/'.$time.'.svg';
+
         //Create New visit
         $visit = Visit::create([
             'requestor_id' => FacadesAuth::user()->id,
@@ -103,9 +115,9 @@ class VisitController extends Controller
             'has_car'      => $hasCar,
             'code'         => $accessCode,
             'plates'       => $request->plates,
+            'qr_image' => $qr_image,
             'status'       => 1,
         ]);
-
 
 
         $visit->save();
