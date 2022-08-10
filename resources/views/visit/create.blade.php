@@ -17,21 +17,6 @@
     </x-slot>
 
 
-    @if ($errors->any())
-
-    <div>
-        <div class="font-medium text-red-600">
-            {{ __('whoops!something went wrong.') }}
-        </div>
-
-        <ul class="mt-3 list-disk list-inside text-sm text-red-600">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
     <!-- Create visitors -->
     <form method="post" action="{{ route('visit.store') }}">
         @csrf

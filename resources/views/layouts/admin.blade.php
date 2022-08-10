@@ -24,7 +24,10 @@
     <div class="min-h-screen bg-gray-100">
         <x-side-navigation.desktop />
 
+
         <div class="md:pl-64 flex flex-col flex-1">
+
+            
             @livewire('navigation-menu')
             <!-- Page Heading -->
             @if (isset($header))
@@ -35,6 +38,8 @@
                 </header>
                 <!-- Page Content -->
                 <main class="m-3">
+                <x-error-message />
+            <x-session-message />
                     {{ $slot }}
                 </main>
             @endif

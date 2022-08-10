@@ -23,10 +23,22 @@ class VisitController extends Controller
     //     $this->middleware('permission:visit-create', ['only' => ['create','store']]);
     // }
 
-    public function index()
+    public function index(Request $request)
     {
+        $search=visit::where([
+            ['code','!=',null],
+            [function ($query) use ($request){
+                if(($term=$request->term)){
+                    $query->orWhere('code','LIKE','%'.$term. '%')->get();
+                }
+            }]
+        ])
+        ->orderBy("id","desc")
+        ->paginate(10);
         $visits = Visit::latest('updated_at')->get();
-        return view('visit.index', compact('visits'));
+        return view('visit.index', compact('visits','search'));
+
+
     }
 
     public function create()
@@ -122,7 +134,7 @@ class VisitController extends Controller
 
         $visit->save();
 
-        return redirect(route('visit.index'));
+        return redirect(route('visit.index'))->with('success', 'በተሳካ ሁኔታ ተመዝግቧል');;
     }
 
 
@@ -177,7 +189,7 @@ class VisitController extends Controller
        
         $visit->save();
 
-        return redirect(route('visit.index'))->with('success', 'መግቢያው ተስተካክሏል');;
+        return redirect(route('visit.index'))->with('success', 'መግቢያው ተስተካክሏል');
     }
 
     public function destroy($id)

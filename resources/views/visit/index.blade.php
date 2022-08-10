@@ -7,18 +7,6 @@
 
 
     <div>
-        @if (session('success'))
-        <div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
-            <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            <div>
-                <span class="font-medium">Success alert!</span> {{ session('success') }}
-            </div>
-        </div>
-        @endif
 
 
 
@@ -26,70 +14,113 @@
             <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
                     href="{{ route('visit.create') }}">Create Visit</a> </button>
         </div>
-        <div class="w-full mx-auto py-10 ">
-            <div class="overflow-x-auto">
-                <div class="w-full overflow-auto align-middle border-gray-200 shadow sm:rounded-lg">
-                    <table class="w-full divide-y divide-slate-200">
-                        <thead>
-                            <tr class="divide-x divide-slate-200">
-                                <th class=" px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left
+        <div>
+            <div class="mx-auto pull-right">
+                <div class="crayons-header--search js-search-form" id="header-search">
+                    <form method="get" action="/search" role="search" accept-charset="UTF-8"><input name="utf8"
+                            type="hidden" value="✓">
+                        <div class="crayons-fields crayons-fields--horizontal">
+                            <div class="crayons-field flex-1 relative"><input
+                                    class="crayons-header--search-input crayons-textfield" type="text" id=""
+                                    name="q" placeholder="Search..." autocomplete="off"
+                                    aria-label="Search term"><button type="submit" aria-label="Search"
+                                    class="c-btn c-btn--icon-alone absolute inset-px left-auto mt-0 py-0"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" aria-hidden="true" class="crayons-icon c-btn__icon"
+                                        focusable="false">
+                                        <path
+                                            d="m18.031 16.617 4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z">
+                                        </path>
+                                    </svg></button></div>
+                        </div>
+                    </form>
+
+                </div>
+                <form method="get" action="{{ route('visit.index') }}" role="search" accept-charset="UTF-8"><input
+                        name="utf8" type="hidden" value="✓">
+                    <div class="crayons-fields crayons-fields--horizontal">
+                        <div class="crayons-field flex-1 relative"><input
+                                class="crayons-header--search-input crayons-textfield" type="text" id=""
+                                name="q" placeholder="Search..." autocomplete="off"
+                                aria-label="Search term"><button type="submit" aria-label="Search"
+                                class="c-btn c-btn--icon-alone absolute inset-px left-auto mt-0 py-0"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    aria-hidden="true" class="crayons-icon c-btn__icon" focusable="false">
+                                    <path
+                                        d="m18.031 16.617 4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z">
+                                    </path>
+                                </svg></button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full mx-auto py-10 ">
+        <div class="overflow-x-auto">
+            <div class="w-full overflow-auto align-middle border-gray-200 shadow sm:rounded-lg">
+                <table class="w-full divide-y divide-slate-200">
+                    <thead>
+                        <tr class="divide-x divide-slate-200">
+                            <th
+                                class=" px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left
                                 text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('Requestor name and department') }}
-                                </th>
+                                {{ __('Requestor name and department') }}
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('Access Codes') }}
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('Access Codes') }}
 
-                                </th>
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('QR Codes') }}
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('QR Codes') }}
 
-                                </th>
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('Request date') }}
-                                </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('Request date') }}
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('entry date') }}
-                                </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('entry date') }}
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('Visitors') }}
-                                </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('Visitors') }}
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('contact_number') }}
-                                </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('contact_number') }}
+                            </th>
 
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('plates') }}
-                                </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('plates') }}
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('edit/delete ') }}
-                                </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('edit/delete ') }}
+                            </th>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('checking') }}
-                                </th>
-                            </tr>
-                        </thead>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                {{ __('checking') }}
+                            </th>
+                        </tr>
+                    </thead>
 
-                        <tbody class="bg-white divide-y divide-slate-200">
-                            <?php $i = 1; ?>
-                            @foreach ($visits as $visit)
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <?php $i = 1; ?>
+                        @foreach ($visits as $visit)
                             <tr class="divide-x divide-slate-200">
                                 <td class="w-56">
                                     <div class="px-2 py-2  flex justify-between items-center">
@@ -126,7 +157,7 @@
 
 
                                 <td class=" w-auto px-2 py-2">
-                                    <span>{{ $visit->plates ?? " null"}}</span>
+                                    <span>{{ $visit->plates ?? ' null' }}</span>
                                 </td>
 
                                 <td class="w-auto h-full">
@@ -162,11 +193,11 @@
                                     <span>{{ $visit->status }}</span>
                                 </td>
                             </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
     </div>
 </x-admin-layout>
