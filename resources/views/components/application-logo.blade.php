@@ -1,0 +1,1 @@
+<img {{ $attributes->merge(['type' => 'submit', 'class' ]) }} src="/logo/logo.png" alt="Quarit Logo">

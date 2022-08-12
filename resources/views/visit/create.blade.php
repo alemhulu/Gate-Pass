@@ -33,13 +33,13 @@
     @endif
 
     <!-- Create visitors -->
-    <form method="post" action="{{ route('visit.store') }}">
+    <form method="post" action="{{ route('visits.store') }}">
         @csrf
         @method('POST')
         <div class="flex justify-end">
             <button type="submit"
                 class="px-6 py-2 text-sm font-semibold align:right text-gray-100 bg-red-700 rounded-md shadow-md hover:bg-red-300 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
-                <a href="{{ route('visit.index') }}">Back</a>
+                <a href="{{ route('visits.index') }}">Back</a>
             </button>
         </div>
         <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('visit date') }}:</label>

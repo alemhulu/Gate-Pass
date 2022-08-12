@@ -7,24 +7,9 @@
 
 
     <div>
-        @if (session('success'))
-        <div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
-            <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            <div>
-                <span class="font-medium">Success alert!</span> {{ session('success') }}
-            </div>
-        </div>
-        @endif
-
-
-
         <div class="flex justify-end">
             <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
-                    href="{{ route('visit.create') }}">Create Visit</a> </button>
+                    href="{{ route('visits.create') }}">Create Visit</a> </button>
         </div>
         <div class="w-full mx-auto py-10 ">
             <div class="overflow-x-auto">
@@ -132,7 +117,7 @@
                                 <td class="w-auto h-full">
 
                                     <div class="flex items-center justify-center space-x-1">
-                                        <a href=" {{ route('visit.edit', $visit->id) }}"
+                                        <a href=" {{ route('visits.edit', $visit->id) }}"
                                             class="text-indigo-600 hover:text-indigo-900 flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -142,7 +127,7 @@
                                         </a>
 
 
-                                        <form method="post" action="{{ route('visit.destroy', $visit->id) }}"
+                                        <form method="post" action="{{ route('visits.destroy', $visit->id) }}"
                                             class="flex">
                                             @csrf @method('delete')
                                             <button type="submit">
