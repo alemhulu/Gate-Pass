@@ -5,12 +5,16 @@
         </h2>
     </x-slot>
 
+    <x-slot name="actionButton">
+        <a href="{{ route('visits.create') }}">
+            <x-button class="flex ">
+                <i class="flex fi fi-rr-plus mr-2"></i>
+                {{ __('Create Visit') }}
+            </x-button>
+        </a>
+    </x-slot>
 
     <div>
-        <div class="flex justify-end">
-            <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
-                    href="{{ route('visits.create') }}">Create Visit</a> </button>
-        </div>
         <div class="w-full mx-auto py-10 ">
             <div class="overflow-x-auto">
                 <div class="w-full overflow-auto align-middle border-gray-200 shadow sm:rounded-lg">
