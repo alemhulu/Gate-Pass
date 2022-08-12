@@ -1,147 +1,76 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users List') }}
+            {{ __('Users Management') }}
         </h2>
     </x-slot>
 
-
-    <div>
-        @if (session('success'))
-        <div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
-            <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            <div>
-                <span class="font-medium">Success alert!</span> {{ session('success')}}
-            </div>
-        </div>
-        @endif
+    @can('user-create')
+    <x-slot name="actionButton">
+        <a href="{{ route('users.create') }}">
+            <x-button class="flex ">
+                <i class="flex fi fi-rr-plus mr-2"></i>
+                {{ __('Create New User') }}
+            </x-button>
+        </a>
+    </x-slot>
+    @endcan
 
 
+    <div class="py-3">
+        <div class="mx-auto">
+            <x-table>
+                <x-slot name="header">
+                    <x-th>#</x-th>
+                    <x-th>Name</x-th>
+                    <x-th>Email</x-th>
+                    <x-th>Department</x-th>
+                    <x-th>Role</x-th>
+                </x-slot>
 
-        <div class="flex justify-end">
-            <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
-                    href="{{ route('admin-users.create') }}">create users</a> </button>
-        </div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                <div
-                    class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    ID</th>
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Name</th>
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Email</th>
+                <x-slot name="row">
+                    @forelse($data as $key => $user)
+                    @if ($user->id != 1 || Auth::user()->id == 1)
+                    <x-tr>
+                        <x-td>
+                            <div class="text-sm text-gray-700 font-semibold">{{ ++$i}}</div>
+                        </x-td>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Role</th>
+                        <x-td>
+                            <div class="text-sm text-gray-700 font-semibold">{{ $user->name }}</div>
+                        </x-td>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Department</th>
+                        <x-td>
+                            <div class="text-sm text-gray-700 font-semibold">{{ $user->email }}</div>
+                        </x-td>
 
-                                <th
-                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Created_At</th>
-                                <th class="px-6 py-3 text-sm text-left text-gray-500 border-b border-gray-200 bg-gray-50"
-                                    colspan="3">
-                                    Action</th>
-                            </tr>
-                        </thead>
+                        <x-td>
+                            <div class="text-sm text-gray-700 font-semibold">{{ $user->department }}</div>
+                        </x-td>
 
-                        <tbody class="bg-white">
-                            <?php $i=1; ?>
-                            @foreach($users as $user)
-
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="flex items-center">
-                                        {{ $i++ }}
-                                    </div>
-
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <div class="text-sm leading-5 text-gray-900">{{ $user->name }}
-                                    </div>
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <p>{{ $user->email }}
-                                    </p>
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <p>{{ $user->role->name}}
-                                    </p>
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <p>{{ $user->department}}
-                                    </p>
-                                </td>
-
-
-                                <td
-                                    class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <span>{{ $user->created_at }}</span>
-                                </td>
-
-                                <td
-                                    class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href=" {{ route('admin-users.edit', $user->id) }}"
-                                        class="text-indigo-600 hover:text-indigo-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                        </svg>
-                                    </a>
-
-                                <td
-                                    class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200 ">
-                                    <a href="{{ route('admin-users.show', $user->id) }}"
-                                        class="text-gray-600 hover:text-gray-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                        </svg>
-                                    </a>
-
-                                </td>
-
-                                </td>
-                                <td class="text-sm font-medium leading-5 whitespace-no-wrap border-b border-gray-200 ">
-                                    <form method="post" action="{{ route('admin-users.destroy',  $user->id) }}">
-                                        @csrf @method('delete')
-                                        <button type="submit">
-                                            <svg class="w-6 h-6 text-red-600 hover:text-red-800" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                        <x-td>
+                            @if(!empty($user->getRoleNames()))
+                            @foreach($user->getRoleNames() as $v)
+                            <label class="px-1 py-0.5 bg-green-500 rounded text-white text-xs">{{ $v }}</label>
                             @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                            @endif
+                        </x-td>
+
+                        <x-td>
+                            <x-action view="{{ route('users.show',$user->id) }}"
+                                edit="{{ route('users.edit', $user->id) }}"
+                                delete="{{ route('users.destroy', $user->id) }}" />
+                        </x-td>
+                    </x-tr>
+                    @endif
+
+
+                    @empty
+                    <x-empty-row colspan=4 />
+                    @endforelse
+                </x-slot>
+            </x-table>
         </div>
+        {!! $data->render() !!}
     </div>
 </x-admin-layout>

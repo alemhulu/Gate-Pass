@@ -122,7 +122,7 @@ class VisitController extends Controller
 
         $visit->save();
 
-        return redirect(route('visit.index'));
+        return redirect(route('visits.index'));
     }
 
 

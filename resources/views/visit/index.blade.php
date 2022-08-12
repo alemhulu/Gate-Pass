@@ -24,7 +24,7 @@
 
         <div class="flex justify-end">
             <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
-                    href="{{ route('visit.create') }}">Create Visit</a> </button>
+                    href="{{ route('visits.create') }}">Create Visit</a> </button>
         </div>
         <div class="w-full mx-auto py-10 ">
             <div class="overflow-x-auto">
@@ -132,7 +132,7 @@
                                 <td class="w-auto h-full">
 
                                     <div class="flex items-center justify-center space-x-1">
-                                        <a href=" {{ route('visit.edit', $visit->id) }}"
+                                        <a href=" {{ route('visits.edit', $visit->id) }}"
                                             class="text-indigo-600 hover:text-indigo-900 flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -142,7 +142,7 @@
                                         </a>
 
 
-                                        <form method="post" action="{{ route('visit.destroy', $visit->id) }}"
+                                        <form method="post" action="{{ route('visits.destroy', $visit->id) }}"
                                             class="flex">
                                             @csrf @method('delete')
                                             <button type="submit">
