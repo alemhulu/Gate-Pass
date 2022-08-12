@@ -130,10 +130,14 @@ class VisitController extends Controller
     {
              
         $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሀምሌ", "ነሐሴ"];
-
         $visit = Visit::findorFail($id);
+        $gregorian = new DateTime($visit->visit_date);
+        $visitDate = new Andegna\DateTime($gregorian);
+         $year = $visitDate->getYear();   
+         $month = $visitDate->getMonth();  
+         $day = $visitDate->getDay();  
 
-        return view('visit.edit',compact('visit','months'));
+        return view('visit.edit',compact('visit','months','year','month','day'));
     }
 
 
@@ -150,28 +154,19 @@ class VisitController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $visit = Visit::findorfail($id);
-        $today = Carbon::now();
+
         $ethiopianDate = Andegna\DateTimeFactory::of($request->year, $request->month,  $request->day);
-
         $date = $ethiopianDate->toGregorian();
-
-        $visit_date = $ethiopianDate->toGregorian();
-
-        $visit->visit_date = $visit_date;
-
-        $visit->contact_number = $request->contact_number;
+        $visit_date = $date;
 
         $hasCar = 0;
-
         $visitors = "";
-
         $plates = "";
         
         $visit->visitor_list = $request->visitors;
         $visit->contact_number = $request->contact_number;
-        $visit->visit_date = $date;
+        $visit->visit_date = $visit_date;
         $visit->has_car = $hasCar;
         $visit->plates = $request->plates;
        

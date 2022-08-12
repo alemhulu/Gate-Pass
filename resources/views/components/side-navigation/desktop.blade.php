@@ -24,7 +24,7 @@
                                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                                 </svg>
-                                <span class="ml-3">Dashboard</span>
+                                <span class="ml-3">{{ __('Dashboard') }}</span>
                             </a>
                         </li>
 
@@ -84,7 +84,7 @@
                                         d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="flex-1 ml-3 blackspace-nowrap">Visits</span>
+                                <span class="flex-1 ml-3 blackspace-nowrap">{{ __('Visits') }}</span>
                             </a>
                         </li>
                         @endcan
