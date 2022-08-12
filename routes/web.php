@@ -19,9 +19,12 @@ use App\Http\Controllers\VisitController;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => 'auth'], function(){
-     Route::get('/',[HomeController::class,'index'])->name('dashboard');
-
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(), 
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
+    ], function(){
+    Route::get('/',[HomeController::class,'index'])->name('dashboard');
     Route::resources([
         'users'  => UserController::class,
         'visits'  => VisitController::class,
