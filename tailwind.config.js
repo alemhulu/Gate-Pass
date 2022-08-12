@@ -14,6 +14,15 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            keyframes:{
+                life:{
+                    "0%":{width:"100%"},
+                    "100%":{width:"0%"},
+                },
+            },
+            animation:{
+                life:"life 4750ms linear forwards",
+            },
         },
     },
 
