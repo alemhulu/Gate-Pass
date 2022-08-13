@@ -19,8 +19,8 @@
             <x-table>
                 <x-slot name="header">
                     <x-th>#</x-th>
-                    <x-th>Name</x-th>
-                    <x-th>Permissions</x-th>
+                    <x-th>{{ __('Name') }}</x-th>
+                    <x-th>{{ __('Name') }}</x-th>
                 </x-slot>
 
                 <x-slot name="row">
