@@ -36,7 +36,7 @@
                             </div>
 
 
-                            <div class="py-3">
+                            <div class="py-3 space-y-3">
                                 {{ $body }}
                             </div>
 

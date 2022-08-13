@@ -66,13 +66,13 @@
 
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
         <x-label for="title" value="Assign Roles" />
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <x-select name="roles[]" id="roles[]" multiple="multiple" value="{{ old('roles[]') }}">
-            <option value="" class="text-gray-400">select one or more</option>
+        <div class="mt-1 sm:col-span-2 border pt-1 pb-3 px-3 rounded-md border-gray-300">
+          <p class="text-gray-400 text-xs font-semibold">select one or more</p>
+          <div class="sm:grid sm:grid-cols-4 gap-2">
             @foreach ($roles as $role)
-            <option value="{{ $role }}">{{ $role }}</option>
+            <x-multi-checkbox name="roles[]" value="{{ $role }}" title="{{ $role }}" />
             @endforeach
-          </x-select>
+          </div>
           <x-input-error for="roles[]" />
         </div>
       </div>

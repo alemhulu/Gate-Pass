@@ -5,12 +5,16 @@
         </h2>
     </x-slot>
 
+    <x-slot name="actionButton">
+        <a href="{{ route('visits.create') }}">
+            <x-button class="flex ">
+                <i class="flex fi fi-rr-plus mr-2"></i>
+                {{ __('Create Visit') }}
+            </x-button>
+        </a>
+    </x-slot>
 
     <div>
-        <div class="flex justify-end">
-            <button class="px-4 py-2 rounded-md bg-sky-500 text-sky-100 hover:bg-sky-600"><a
-                    href="{{ route('visits.create') }}">Create Visit</a> </button>
-        </div>
         <div class="w-full mx-auto py-10 ">
             <div class="overflow-x-auto">
                 <div class="w-full overflow-auto align-middle border-gray-200 shadow sm:rounded-lg">
@@ -62,7 +66,7 @@
 
                                 <th
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('edit/delete ') }}
+                                    {{ __('Actions') }}
                                 </th>
 
                                 <th
@@ -77,8 +81,16 @@
                             @foreach ($visits as $visit)
                             <tr class="divide-x divide-slate-200">
                                 <td class="w-56">
-                                    <div class="px-2 py-2  flex justify-between items-center">
-                                        {{ $visit->user->name }} : {{ $visit->user->department }}
+                                    <div class="px-2 py-2  flex-col items-center space-y-1">
+                                        <span class="flex text-gray-600 font-semibold items-center">
+                                            <span class="fi fi-rr-comment-user flex mr-1 gap-x-1"> </span>
+                                            {{ $visit->user->name }}
+                                        </span>
+                                        <span class="flex text-gray-500  items-center">
+                                            <span class="fi fi-rr-building flex mr-1 text-sm gap-x-1">
+                                                {{ $visit->user->department ?? ' Department' }}
+                                            </span>
+                                        </span>
                                     </div>
                                 </td>
 
@@ -90,13 +102,33 @@
                                     <img src="{{ $visit->qr_image }}" class="w-24">
                                 </td>
 
-                                <td class="w-auto px-2 py-2">
-                                    <p>{{ $visit->request_date }}
-                                    </p>
+                                <td class="w-auto px-2 py-2 flex-col text-gray-500 font-semibold space-y-2">
+                                    @if (LaravelLocalization::getCurrentLocale() === 'en')
+                                    <span class="flex">{{ date('F d, Y', strtotime($visit->request_date))  }}</span>
+                                    @else
+                                    <span class="flex">
+                                        @php
+                                        $date = DateTime::createFromFormat('Y-m-d', $visit->request_date);
+                                        $ethipic = new Andegna\DateTime($date);
+                                        echo $ethipic->format('F d, Y', Andegna\Constants::DATE_ETHIOPIAN);
+                                        @endphp
+                                    </span>
+                                    @endif
                                 </td>
 
-                                <td class=" w-auto px-2 py-2">
-                                    <span>{{ $visit->visit_date }}</span>
+                                <td class="w-auto px-2 py-2 flex-col text-gray-500 font-semibold space-y-2">
+                                    @if (LaravelLocalization::getCurrentLocale() === 'en')
+
+                                    <span class="flex">{{ date('F d, Y', strtotime($visit->visit_date))  }}</span>
+                                    @else
+                                    <span class="flex">
+                                        @php
+                                        $date = DateTime::createFromFormat('Y-m-d', $visit->visit_date);
+                                        $ethipic = new Andegna\DateTime($date);
+                                        echo $ethipic->format('F d, Y', Andegna\Constants::DATE_ETHIOPIAN);
+                                        @endphp
+                                    </span>
+                                    @endif
                                 </td>
 
                                 <td class=" w-auto px-2 py-2">
