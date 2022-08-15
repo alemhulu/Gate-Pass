@@ -1,61 +1,66 @@
 <x-admin-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('update user information') }}
-    </h2>
-  </x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('update user information') }}
+        </h2>
+    </x-slot>
 
-  <!-- Edit Post -->
-  <div class="flex justify-end">
-    <button type="submit"
-      class="px-6 py-2 text-sm font-semibold align:right text-gray-100 bg-red-700 rounded-md shadow-md hover:bg-red-300 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
-      <a href="{{ route('admin-users.index') }}">Back</a>
-    </button>
-  </div>
-  <div>
-    <div class="w-full px-16 py-20 mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
+    <!-- show Post -->
 
-      <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
+    <div>
+        <form class="w-full">
+            <div class="w-full px-16 py-20 mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
 
-        <!-- Title -->
-        <div>
-          <label class="block text-sm font-bold text-gray-700" for="Name">
-            Name:
-          </label>
-          <p>{{ $user->name }}</p>
+                <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
-        </div>
+                    <!-- Title -->
+                    <div>
+                        <label class=" mt-3 block text-sm font-bold text-gray-700" for="Name">
+                            Name :
+                        </label>
+                        <p class="mt-3
+                         ">{{ $user->name }}</p>
 
-        <div>
-          <label class="block text-sm font-bold text-gray-700" for="Email">
-            Email
-          </label>
+                    </div>
 
-          <p>{{ $user->email }}</p>
-        </div>
+                    <div>
+                        <label class=" mt-3 block text-sm font-bold text-gray-700" for="Email">
+                            Email :
+                        </label>
 
-        <div>
-          <label class="block text-sm font-bold text-gray-700" for="Department">
-            Department
-          </label>
-          <p>{{ $user->department }}</p>
-        </div>
+                        <p class="mt-3
+                         ">{{ $user->email }}</p>
+                    </div>
+
+                    <div>
+                        <label class=" mt-3 block text-sm font-bold text-gray-700" for="Department">
+                            Department :
+                        </label>
+                        <p class="mt-3
+                         ">{{ $user->department }}</p>
+                    </div>
+
+                    <div>
+                        <label class=" mt-3 block text-sm font-bold text-gray-700" for="Department">
+                            <strong> Role :</strong>
+                        </label>
 
 
+                        >{{ $user->getRoleNames() }}
+                    </div>
 
-        <div class="flex items-center justify-start mt-4 gap-x-2">
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="px-6 py-2 text-sm font-semibold align:right text-gray-100 bg-red-700 rounded-md shadow-md hover:bg-red-300 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                            <a href="{{ route('users.index') }}">Back</a>
+                        </button>
+                    </div>
 
-          <button type="submit"
-            class="px-6 py-2 text-sm font-semibold text-gray-100 bg-gray-400 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
-            Cancel
-          </button>
-        </div>
+
+                </div>
+            </div>
         </form>
-      </div>
     </div>
 
-  </div>
-  </div>
-  </div>
-  </div>
+
 </x-admin-layout>

@@ -116,17 +116,11 @@
 
                             </x-jet-dropdown-link>
                             @else
-<<<<<<< HEAD
-                                <x-jet-dropdown-link
-                                    href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
-                                    English
-                                </x-jet-dropdown-link>
-=======
+
                             <x-jet-dropdown-link
                                 href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
                                 {{ __('English') }}
                             </x-jet-dropdown-link>
->>>>>>> fa8286c14438577fcdf20d6f5f50f209cfe9c4b6
                             @endif
                         </x-slot>
                     </x-jet-dropdown>

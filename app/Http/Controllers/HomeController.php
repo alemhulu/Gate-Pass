@@ -32,16 +32,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function view(Request $request)
-    {
-
-        $visits = Visit::where('code', $request->code)->get();
-        
-        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሀምሌ", "ነሐሴ"];
-
-        return view('visit.view', compact('visits','months'));
-    }
-
+   
+     
     
     
 }

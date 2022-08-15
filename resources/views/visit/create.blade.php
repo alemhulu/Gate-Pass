@@ -69,10 +69,10 @@
             </div>
 
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-                <x-label for="contact_number" value="{{ __('Contact Number') }}" />
+                <x-label for="email" value="{{ __('Email') }}" />
                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <x-input type="text" name="contact_number" id="contact_number" />
-                    <x-input-error for="contact_number" />
+                    <x-input type="email" name="email" id="email" value="{{ old('email') }}" />
+                    <x-input-error for="email" />
                 </div>
             </div>
 

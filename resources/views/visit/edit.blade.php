@@ -53,7 +53,7 @@
 
                         <div class="text-center font-semibold text-gray-600">
                             <x-select id="year" name="year">
-                                @for ($i = 2013; $i <= 2024; $i++) <option value={{ $i }} @if ($i==$year) selected
+                                @for ($i = 2014; $i <= 2024; $i++) <option value={{ $i }} @if ($i==$year) selected
                                     @endif>
                                     {{ $i }}</option>
                                     @endfor
@@ -74,11 +74,11 @@
             </div>
 
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-                <x-label for="contact_number" value="Contact Number" />
+                <x-label for="email" value="Email" />
                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <x-input type="text" name="contact_number" id="contact_number"
-                        value="{{ $visit->contact_number }}" />
-                    <x-input-error for="contact_number" />
+                    <x-input type="email" name="email" id="email"
+                        value="{{ $visit->email }}" />
+                    <x-input-error for="email" />
                 </div>
             </div>
 

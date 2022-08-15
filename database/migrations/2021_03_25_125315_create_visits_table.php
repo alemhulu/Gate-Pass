@@ -18,7 +18,7 @@ class CreateVisitsTable extends Migration
             $table->integer('requestor_id')->references('id')->on('users');
             $table->date('request_date');
             $table->string('visitor_list');
-            $table->string('contact_number')->nullable();
+            $table->string('email');
             $table->date('visit_date');
             $table->boolean('has_car');
             $table->integer('code');

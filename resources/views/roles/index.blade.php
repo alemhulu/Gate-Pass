@@ -20,7 +20,7 @@
                 <x-slot name="header">
                     <x-th>#</x-th>
                     <x-th>{{ __('Name') }}</x-th>
-                    <x-th>{{ __('Name') }}</x-th>
+                    <x-th>{{ __('Permissions given') }}</x-th>
                 </x-slot>
 
                 <x-slot name="row">
@@ -39,7 +39,7 @@
                         </x-td>
 
                         <x-td>
-                            <x-action {{-- view="{{ route('roles.show',$role->id) }}" --}}
+                            <x-action view="{{ route('roles.show',$role->id) }}"
                                 edit="{{ route('roles.edit', $role->id) }}"
                                 delete="{{ route('roles.destroy', $role->id) }}" />
                         </x-td>
@@ -50,6 +50,5 @@
                 </x-slot>
             </x-table>
         </div>
-        {!! $roles->render() !!}
-    </div>
+     </div>
 </x-admin-layout>

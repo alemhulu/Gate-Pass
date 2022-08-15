@@ -43,13 +43,13 @@ class VisitController extends Controller
                 'year' => 'required',
                 'month' => 'required',
                 'day' => 'required',
-                'contact_number' => 'required|min:10|max:10',
+                'email' => 'required|email|unique:users,email',
                 'plates'=>'nullable'
 
             ],
 
             [
-                'visitors.required' => 'እባኮ የእንግዶችን ስም ያስገቡ'
+                'visitors.required' => 'please enter the visitor name/እባኮ የእንግዶችን ስም ያስገቡ'
             ]
         );
 
@@ -110,13 +110,13 @@ class VisitController extends Controller
             'requestor_id' => FacadesAuth::user()->id,
             'request_date' => $today,
             'visitor_list' => $request->visitors,
-            'contact_number' => $request->contact_number,
+            'email' => $request->email,
             'visit_date'   => $date,
             'has_car'      => $hasCar,
             'code'         => $accessCode,
             'plates'       => $request->plates,
             'qr_image' => $qr_image,
-            'status'       => 1,
+            'status'       => 0,
         ]);
 
 
@@ -129,7 +129,7 @@ class VisitController extends Controller
     public function edit($id)
     {
              
-        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሀምሌ", "ነሐሴ"];
+        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሐምሌ", "ነሐሴ"];
         $visit = Visit::findorFail($id);
         $gregorian = new DateTime($visit->visit_date);
         $visitDate = new Andegna\DateTime($gregorian);
@@ -165,14 +165,14 @@ class VisitController extends Controller
         $plates = "";
         
         $visit->visitor_list = $request->visitors;
-        $visit->contact_number = $request->contact_number;
+        $visit->email = $request->email;
         $visit->visit_date = $visit_date;
         $visit->has_car = $hasCar;
         $visit->plates = $request->plates;
        
         $visit->save();
 
-        return redirect(route('visits.index'))->with('success', 'መግቢያው ተስተካክሏል');;
+        return redirect(route('visits.index'))->with('success', 'The visit has been updated/መግቢያው ተስተካክሏል');;
     }
 
     public function destroy($id)
@@ -180,6 +180,6 @@ class VisitController extends Controller
 
         $visit = Visit::findorfail($id);
         $visit->delete();
-        return back()->with('success', 'መግቢያው ተሰርዙዋል');
+        return back()->with('success', 'The visit has been deleted/መግቢያው ተሰርዙዋል');
     }
 }

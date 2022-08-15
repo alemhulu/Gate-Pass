@@ -21,7 +21,7 @@ module.exports = {
                 },
             },
             animation:{
-                life:"life 4750ms linear forwards",
+                life:"life 4700ms linear forwards",
             },
         },
     },

@@ -13,7 +13,36 @@
             </x-button>
         </a>
     </x-slot>
+    <div>
+        <!-- Search button -->
+        <div>
+            <form action="/search" method="get">
+                <div class="form-group">
+                    <input type="search" name="search" class="form-control">
+                    <span class="form-group-btn">
 
+                        <button
+                            class="flex space-x-3 items-center px-5 py-3 bg-indigo-500 hover:bg-indigo-800 rounded-full drop-shadow-md">
+                            <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="20" height="20" viewBox="0 0 30 30">
+                                <path
+                                    d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                                </path>
+                            </svg>
+                            <span class="text-white text-l font-bold">Search</span>
+                        </button>
+                    </span>
+                </div>
+
+
+            </form>
+
+
+
+        </div>
+
+
+    </div>
     <div>
         <div class="w-full mx-auto py-10 ">
             <div class="overflow-x-auto">
@@ -21,7 +50,8 @@
                     <table class="w-full divide-y divide-slate-200">
                         <thead>
                             <tr class="divide-x divide-slate-200">
-                                <th class=" px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left
+                                <th
+                                    class=" px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left
                                 text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     {{ __('Requestor name and department') }}
                                 </th>
@@ -55,7 +85,7 @@
 
                                 <th
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    {{ __('contact_number') }}
+                                    {{ __('Email') }}
                                 </th>
 
 
@@ -79,106 +109,118 @@
                         <tbody class="bg-white divide-y divide-slate-200">
                             <?php $i = 1; ?>
                             @foreach ($visits as $visit)
-                            <tr class="divide-x divide-slate-200">
-                                <td class="w-56">
-                                    <div class="px-2 py-2  flex-col items-center space-y-1">
-                                        <span class="flex text-gray-600 font-semibold items-center">
-                                            <span class="fi fi-rr-comment-user flex mr-1 gap-x-1"> </span>
-                                            {{ $visit->user->name }}
-                                        </span>
-                                        <span class="flex text-gray-500  items-center">
-                                            <span class="fi fi-rr-building flex mr-1 text-sm gap-x-1">
-                                                {{ $visit->user->department ?? ' Department' }}
+                                <tr class="divide-x divide-slate-200">
+                                    <td class="w-56">
+                                        <div class="px-2 py-2  flex-col items-center space-y-1">
+                                            <span class="flex text-gray-600 font-semibold items-center">
+                                                <span class="fi fi-rr-comment-user flex mr-1 gap-x-1"> </span>
+                                                {{ $visit->user->name }}
                                             </span>
-                                        </span>
-                                    </div>
-                                </td>
+                                            <span class="flex text-gray-500  items-center">
+                                                <span class="fi fi-rr-building flex mr-1 text-sm gap-x-1">
+                                                    {{ $visit->user->department ?? ' Department' }}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </td>
 
-                                <td class="px-2 py-2 text-center">
-                                    <span class="font-semibold text-gray-600 ">{{ $visit->code }}</span>
-                                </td>
+                                    <td class="px-2 py-2 text-center">
+                                        <span class="font-semibold text-gray-600 ">{{ $visit->code }}</span>
+                                    </td>
 
-                                <td class="w-auto p-1 flex justify-center">
-                                    <img src="{{ $visit->qr_image }}" class="w-24">
-                                </td>
+                                    <td class="w-auto p-1 flex justify-center">
+                                        <img src="{{ $visit->qr_image }}" class="w-24">
+                                    </td>
 
-                                <td class="w-auto px-2 py-2 flex-col text-gray-500 font-semibold space-y-2">
-                                    @if (LaravelLocalization::getCurrentLocale() === 'en')
-                                    <span class="flex">{{ date('F d, Y', strtotime($visit->request_date))  }}</span>
-                                    @else
-                                    <span class="flex">
-                                        @php
-                                        $date = DateTime::createFromFormat('Y-m-d', $visit->request_date);
-                                        $ethipic = new Andegna\DateTime($date);
-                                        echo $ethipic->format('F d, Y', Andegna\Constants::DATE_ETHIOPIAN);
-                                        @endphp
-                                    </span>
-                                    @endif
-                                </td>
+                                    <td class="w-auto px-2 py-2 flex-col text-gray-500 font-semibold space-y-2">
+                                        @if (LaravelLocalization::getCurrentLocale() === 'en')
+                                            <span
+                                                class="flex">{{ date('F d, Y', strtotime($visit->request_date)) }}</span>
+                                        @else
+                                            <span class="flex">
+                                                @php
+                                                    $date = DateTime::createFromFormat('Y-m-d', $visit->request_date);
+                                                    $ethipic = new Andegna\DateTime($date);
+                                                    echo $ethipic->format('F d, Y', Andegna\Constants::DATE_ETHIOPIAN);
+                                                @endphp
+                                            </span>
+                                        @endif
+                                    </td>
 
-                                <td class="w-auto px-2 py-2 flex-col text-gray-500 font-semibold space-y-2">
-                                    @if (LaravelLocalization::getCurrentLocale() === 'en')
+                                    <td class="w-auto px-2 py-2 flex-col text-gray-500 font-semibold space-y-2">
+                                        @if (LaravelLocalization::getCurrentLocale() === 'en')
+                                            <span
+                                                class="flex">{{ date('F d, Y', strtotime($visit->visit_date)) }}</span>
+                                        @else
+                                            <span class="flex">
+                                                @php
+                                                    $date = DateTime::createFromFormat('Y-m-d', $visit->visit_date);
+                                                    $ethipic = new Andegna\DateTime($date);
+                                                    echo $ethipic->format('F d, Y', Andegna\Constants::DATE_ETHIOPIAN);
+                                                @endphp
+                                            </span>
+                                        @endif
+                                    </td>
 
-                                    <span class="flex">{{ date('F d, Y', strtotime($visit->visit_date))  }}</span>
-                                    @else
-                                    <span class="flex">
-                                        @php
-                                        $date = DateTime::createFromFormat('Y-m-d', $visit->visit_date);
-                                        $ethipic = new Andegna\DateTime($date);
-                                        echo $ethipic->format('F d, Y', Andegna\Constants::DATE_ETHIOPIAN);
-                                        @endphp
-                                    </span>
-                                    @endif
-                                </td>
+                                    <td class=" w-auto px-2 py-2">
+                                        <p>{{ $visit->visitor_list }}
+                                        </p>
+                                    </td>
 
-                                <td class=" w-auto px-2 py-2">
-                                    <p>{{ $visit->visitor_list }}
-                                    </p>
-                                </td>
-
-                                <td class=" w-auto px-2 py-2">
-                                    <p>{{ $visit->contact_number }}
-                                    </p>
-                                </td>
-
-
-                                <td class=" w-auto px-2 py-2">
-                                    <span>{{ $visit->plates ?? " null"}}</span>
-                                </td>
-
-                                <td class="w-auto h-full">
-
-                                    <div class="flex items-center justify-center space-x-1">
-                                        <a href=" {{ route('visits.edit', $visit->id) }}"
-                                            class="text-indigo-600 hover:text-indigo-900 flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                            </svg>
-                                        </a>
+                                    <td class=" w-auto px-2 py-2">
+                                        <p>{{ $visit->email }}
+                                        </p>
+                                    </td>
 
 
-                                        <form method="post" action="{{ route('visits.destroy', $visit->id) }}"
-                                            class="flex">
-                                            @csrf @method('delete')
-                                            <button type="submit">
-                                                <svg class="w-6 h-6 text-red-600 hover:text-red-800" fill="none"
+                                    <td class=" w-auto px-2 py-2">
+                                        <span>{{ $visit->plates ?? ' null' }}</span>
+                                    </td>
+
+                                    <td class="w-auto h-full">
+
+                                        <div class="flex items-center justify-center space-x-1">
+                                            <a href=" {{ route('visits.edit', $visit->id) }}"
+                                                class="text-indigo-600 hover:text-indigo-900 flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                                     viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                 </svg>
-                                            </button>
-                                        </form>
-                                    </div>
+                                            </a>
 
-                                </td>
 
-                                <td class="px-2 py-2w-full">
-                                    <span>{{ $visit->status }}</span>
-                                </td>
-                            </tr>
+                                            <form method="post" action="{{ route('visits.destroy', $visit->id) }}"
+                                                class="flex">
+                                                @csrf @method('delete')
+                                                <button type="submit">
+                                                    <svg class="w-6 h-6 text-red-600 hover:text-red-800" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </td>
+
+                                    <td class="px-2 py-2w-full">
+                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                            <div class=" w-1/3">
+                                                <x-multi-checkbox name="status" value="1" title=""
+                                                    checked="{{ $visit->status === 1 ?? '' ? true : false }}"
+                                                    onclick="ShowHideDiv(this)" />
+                                            </div>
+
+                                            {{-- <div id="dvHasCar" class="mt-1 w-1/2"
+                                                style="display: {{ $visit->status === 1 ? 'block' : 'none' }}">
+                                                
+                                            </div> --}}
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -186,4 +228,10 @@
             </div>
         </div>
     </div>
-</x-admin-layout>
+
+    <script type="text/javascript">
+        function ShowHideDiv(chkHasCar) {
+            var dvHasCar = document.getElementById("dvHasCar");
+            dvHasCar.style.display = chkHasCar.checked ? "block" : "none";
+        } <
+        /x-admin-layout>

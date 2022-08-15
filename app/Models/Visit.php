@@ -14,7 +14,7 @@ class visit extends Model
         'requestor_id',
         'request_date',
         'visitor_list',
-        'contact_number',
+        'email',
         'visit_date',
         'has_car',
         'code',

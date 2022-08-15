@@ -63,7 +63,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
     
         return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+                        ->with('success','Role created successfully/ሃላፊነቱ ተፈጥሯል');
     }
 
     /**
@@ -120,7 +120,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
     
         return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+                        ->with('success','Role updated successfully/ሃላፊነቱ ተስተካክሏል');
     }
 
     /**
@@ -133,6 +133,6 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-                        ->with('success','Role deleted successfully');
+                        ->with('success','Role deleted successfully/ሃላፊነቱ ተሰርዟል');
     }
 }

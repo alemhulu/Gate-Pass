@@ -1,20 +1,14 @@
 {
-<<<<<<< HEAD
     "failed": "መግቢያ ኢሜል ይለፍ ቃል ስህተት አለው! ",
     "visit": "መግቢያ ቀን",
     "visitors_full_name": "የእንግዳው ሙሉ ስም ",
     "visitors_plate_numbers": "የእንግዳ የመኪና ታርጋ ቁጥሮች",
-=======
-
-    "Dashboard": "ዳሽቦርዶች",
-    "failed": "መግቢያ ኢሜል ይለፍ ቃል ስህተት አለው! ",
     "Visit Date": "መግቢያ ቀን",
     "Visits": "መግቢያዎች",
     "Visitor Full Name": "የእንግዳው ሙሉ ስም ",
     "Visitor Plate Numbers": "የእንግዳ የመኪና ታርጋ ቁጥር",
     "Contact Number": "የእንግዳው ስልክ ቁጥር",
     "Check If Visitor Has Car": "እንግዳው መኪና ካለው ይህን ይንኩ",
->>>>>>> fa8286c14438577fcdf20d6f5f50f209cfe9c4b6
     "new request": "አዲስ መግቢያ",
     "submit": "አስገባ ",
     "welcome": "የእንግዳ መግቢያ",
@@ -56,11 +50,8 @@
     "June": "ሰኔ",
     "July": "ሐምሌ",
     "Augest": "ነሐሴ",
-<<<<<<< HEAD
     "Dashboard": "መግቢያ ገጽ",
-    "dashboard":"መግቢያ ገጽ",
     "visits":"የተደረጉ ጉብኝቶች",
-    "Roles":"የስራ ድርሻ",
     "Create New User":"አዲስ ተጠቃሚዎች መመዝገቢያ",
     "Gate Pass":"እንግዶች ማስገቢያ",
     "lang":"ቋንቋ",
@@ -70,12 +61,11 @@
     "Admin":"የ ክፍል አስተዳደር",
     "Supper-Admin":"ጠቅላይ አስተዳደር",
     "staff":"ሰራተኞች",
-    "Create New Role":"አዲስ የስራ ድርሻ መመዝገቢያ"
-=======
+    "Create New Role":"አዲስ የስራ ድርሻ መመዝገቢያ",
     "Requestor name and department": "የጠያቂ ስም እና ክፍል",
     "QR Codes": "QR ኮዶች",
     "plates": "የመኪና ታርጋ",
     "Actions": "እርምጃዎች",
     "Roles": "ሐላፊነቶች"
->>>>>>> fa8286c14438577fcdf20d6f5f50f209cfe9c4b6
+
 }

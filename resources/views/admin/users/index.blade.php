@@ -57,7 +57,8 @@
                         </x-td>
 
                         <x-td>
-                            <x-action {{-- view="{{ route('users.show',$user->id) }}" --}}
+                            <x-action 
+                            view="{{ route('users.show',$user->id) }}"
                                 edit="{{ route('users.edit', $user->id) }}"
                                 delete="{{ route('users.destroy', $user->id) }}" />
                         </x-td>

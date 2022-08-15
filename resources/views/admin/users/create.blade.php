@@ -57,17 +57,9 @@
       </div>
 
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-        <x-label for="confirm-password" value="Password Confirmation" />
-        <div class="mt-1 sm:mt-0 sm:col-span-2">
-          <x-input type="password" name="confirm-password" id="confirm-password" />
-          <x-input-error for="confirm-password" />
-        </div>
-      </div>
-
-      <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
         <x-label for="title" value="Assign Roles" />
         <div class="mt-1 sm:col-span-2 border pt-1 pb-3 px-3 rounded-md border-gray-300">
-          <p class="text-gray-400 text-xs font-semibold">select one or more</p>
+          <p class="text-gray-400 text-xs font-semibold">{{ __('select one or more') }}</p>
           <div class="sm:grid sm:grid-cols-4 gap-2">
             @foreach ($roles as $role)
             <x-multi-checkbox name="roles[]" value="{{ $role }}" title="{{ $role }}" />
