@@ -18,18 +18,11 @@
         <div>
             <form action="/search" method="get">
                 <div class="form-group">
-                    <input type="search" name="search" class="form-control">
-                    <span class="form-group-btn">
+                    <input type="search" name="search" class="input-group">
+                    <span class="input-group-prepend">
 
-                        <button
-                            class="flex space-x-3 items-center px-5 py-3 bg-indigo-500 hover:bg-indigo-800 rounded-full drop-shadow-md">
-                            <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                width="20" height="20" viewBox="0 0 30 30">
-                                <path
-                                    d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
-                                </path>
-                            </svg>
-                            <span class="text-white text-l font-bold">Search</span>
+                        <button type="submit" class="btn btn-primary">search
+                          
                         </button>
                     </span>
                 </div>
@@ -215,10 +208,6 @@
                                                     onclick="ShowHideDiv(this)" />
                                             </div>
 
-                                            {{-- <div id="dvHasCar" class="mt-1 w-1/2"
-                                                style="display: {{ $visit->status === 1 ? 'block' : 'none' }}">
-                                                
-                                            </div> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -233,5 +222,5 @@
         function ShowHideDiv(chkHasCar) {
             var dvHasCar = document.getElementById("dvHasCar");
             dvHasCar.style.display = chkHasCar.checked ? "block" : "none";
-        } <
-        /x-admin-layout>
+        } 
+        </x-admin-layout>

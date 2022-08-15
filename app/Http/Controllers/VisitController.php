@@ -22,6 +22,13 @@ class VisitController extends Controller
     //     $this->middleware('permission:visit-delete', ['only' => ['delete']]);
     //     $this->middleware('permission:visit-create', ['only' => ['create','store']]);
     // }
+    public function search(Request $request)
+    {
+       
+        $search=$request->get('search');
+        $visits=\DB::table('visits')->where('code','like','%'.$search.'%')->paginate(5);
+        return view('visit.index',['visits'=>$visits]);
+    }
 
     public function index()
     {
@@ -44,7 +51,7 @@ class VisitController extends Controller
                 'month' => 'required',
                 'day' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'plates'=>'nullable'
+                'plates' => 'nullable'
 
             ],
 
@@ -80,7 +87,7 @@ class VisitController extends Controller
             //     }
             // }
         }
-        
+
         if ($request->has_car == null) {
             $hasCar = 0;
         }
@@ -98,12 +105,12 @@ class VisitController extends Controller
         $time = time();
 
         // create a folder
-        if(!\File::exists(public_path('images'))) {
+        if (!\File::exists(public_path('images'))) {
             \File::makeDirectory(public_path('images'), $mode = 0777, true, true);
         }
 
-        $qrcode = QrCode::size(400)->generate($accessCode, 'images/'.$time.'.svg');
-        $qr_image = '/images/'.$time.'.svg';
+        $qrcode = QrCode::size(400)->generate($accessCode, 'images/' . $time . '.svg');
+        $qr_image = '/images/' . $time . '.svg';
 
         //Create New visit
         $visit = Visit::create([
@@ -128,16 +135,16 @@ class VisitController extends Controller
 
     public function edit($id)
     {
-             
-        $months = ["መስከረም","ጥቅምት","ህዳር","ታህሳስ","ጥር","የካቲት","መጋቢት","ሚያዚያ","ግንቦት","ሰኔ","ሐምሌ", "ነሐሴ"];
+
+        $months = ["መስከረም", "ጥቅምት", "ህዳር", "ታህሳስ", "ጥር", "የካቲት", "መጋቢት", "ሚያዚያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ"];
         $visit = Visit::findorFail($id);
         $gregorian = new DateTime($visit->visit_date);
         $visitDate = new Andegna\DateTime($gregorian);
-         $year = $visitDate->getYear();   
-         $month = $visitDate->getMonth();  
-         $day = $visitDate->getDay();  
+        $year = $visitDate->getYear();
+        $month = $visitDate->getMonth();
+        $day = $visitDate->getDay();
 
-        return view('visit.edit',compact('visit','months','year','month','day'));
+        return view('visit.edit', compact('visit', 'months', 'year', 'month', 'day'));
     }
 
 
@@ -163,13 +170,13 @@ class VisitController extends Controller
         $hasCar = 0;
         $visitors = "";
         $plates = "";
-        
+
         $visit->visitor_list = $request->visitors;
         $visit->email = $request->email;
         $visit->visit_date = $visit_date;
         $visit->has_car = $hasCar;
         $visit->plates = $request->plates;
-       
+
         $visit->save();
 
         return redirect(route('visits.index'))->with('success', 'The visit has been updated/መግቢያው ተስተካክሏል');;
