@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckinCheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -26,6 +27,7 @@ Route::group(
     Route::resources([
         'users'  => UserController::class,
         'visits'  => VisitController::class,
-        'roles' => RoleController::class,        
+        'roles' => RoleController::class,   
+        'check-in-out'=>CheckinCheckoutController::class,     
     ]);
 });

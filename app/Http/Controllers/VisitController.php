@@ -179,7 +179,7 @@ class VisitController extends Controller
 
         $visit->save();
 
-        return redirect(route('visits.index'))->with('success', 'The visit has been updated/መግቢያው ተስተካክሏል');;
+        return redirect(route('visits.index'))->with('success', 'The visit has been updated/መግቢያው ተስተካክሏል');
     }
 
     public function destroy($id)

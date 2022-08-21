@@ -22,7 +22,7 @@
                     <span class="input-group-prepend">
 
                         <button type="submit" class="btn btn-primary">search
-                          
+
                         </button>
                     </span>
                 </div>
@@ -200,12 +200,16 @@
 
                                     </td>
 
+
                                     <td class="px-2 py-2w-full">
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             <div class=" w-1/3">
-                                                <x-multi-checkbox name="status" value="1" title=""
-                                                    checked="{{ $visit->status === 1 ?? '' ? true : false }}"
-                                                    onclick="ShowHideDiv(this)" />
+                                                <form method="post" action="{{ route('check-in-out.update', $visit->id) }}"
+                                                    class="flex">
+                                                    @csrf @method('PUT')
+                                                   <x-toggle publish="{{ $visit->status }}"/> 
+                                                   
+                                                </form>
                                             </div>
 
                                     </td>
@@ -223,4 +227,5 @@
             var dvHasCar = document.getElementById("dvHasCar");
             dvHasCar.style.display = chkHasCar.checked ? "block" : "none";
         } 
-        </x-admin-layout>
+        </script>
+       </x-admin-layout>
