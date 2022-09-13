@@ -19,7 +19,7 @@
 
     {{ $chart->script() }}
                 </div>
-            </div>
+            </div>g
         </div>
     </div>
 </x-admin-layout>

@@ -22,17 +22,24 @@ class VisitController extends Controller
     //     $this->middleware('permission:visit-delete', ['only' => ['delete']]);
     //     $this->middleware('permission:visit-create', ['only' => ['create','store']]);
     // }
+    public function search(Request $request)
+    {
+       
+        $search=$request->get('search');
+        $visits=\DB::table('visits')->where('code','like','%'.$search.'%')->paginate(5);
+        return view('visit.index',['visits'=>$visits]);
+    }
 
     public function index()
     {
         $visits = Visit::latest('updated_at')->get();
-        return view('visit.index', compact('visits'));
+        return view('waitlist.index', compact('visits'));
     }
 
     public function create()
     {
         $months = ["መስከረም", "ጥቅምት", "ህዳር", "ታህሳስ", "ጥር", "የካቲት", "መጋቢት", "ሚያዚያ", "ግንቦት", "ሰኔ", "ሐምሌ", "ነሐሴ"];
-        return view('visit.create', compact('months'));
+        return view('waitlist.create', compact('months'));
     }
 
     public function store(Request $request)
@@ -122,7 +129,7 @@ class VisitController extends Controller
 
         $visit->save();
 
-        return redirect(route('visits.index'));
+        return redirect(route('waitlist.index'));
     }
 
 
@@ -137,7 +144,7 @@ class VisitController extends Controller
         $month = $visitDate->getMonth();
         $day = $visitDate->getDay();
 
-        return view('visit.edit', compact('visit', 'months', 'year', 'month', 'day'));
+        return view('waitlist.edit', compact('visit', 'months', 'year', 'month', 'day'));
     }
 
 
@@ -172,7 +179,7 @@ class VisitController extends Controller
 
         $visit->save();
 
-        return redirect(route('visits.index'))->with('success', 'The visit has been updated/መግቢያው ተስተካክሏል');
+        return redirect(route('waitlist.index'))->with('success', 'The visit has been updated/መግቢያው ተስተካክሏል');
     }
 
     public function destroy($id)
