@@ -15,7 +15,7 @@
                     </div>
 
 
-    <script src="{{ $chart->cdn() }}"></script>
+<script src="{{ @asset('vendor/larapex-charts/apexcharts.js') }}"></script>
 
     {{ $chart->script() }}
                 </div>
