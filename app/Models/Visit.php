@@ -20,7 +20,9 @@ class visit extends Model
         'code',
         'plates',
         'status',
-        'qr_image'
+        'qr_image',
+        'Approved'  
+
     ];
 
 

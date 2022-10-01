@@ -22,13 +22,13 @@ class VisitController extends Controller
     //     $this->middleware('permission:visit-delete', ['only' => ['delete']]);
     //     $this->middleware('permission:visit-create', ['only' => ['create','store']]);
     // }
-    public function search(Request $request)
-    {
+    // public function search(Request $request)
+    // {
        
-        $search=$request->get('search');
-        $visits=\DB::table('visits')->where('code','like','%'.$search.'%')->paginate(5);
-        return view('visit.index',['visits'=>$visits]);
-    }
+    //     $search=$request->get('search');
+    //     $visits=\DB::table('visits')->where('code','like','%'.$search.'%')->paginate(5);
+    //     return view('visit.index',['visits'=>$visits]);
+    // }
 
     public function index()
     {
@@ -124,6 +124,8 @@ class VisitController extends Controller
             'plates'       => $request->plates,
             'qr_image' => $qr_image,
             'status'       => 0,
+            'Approved'       => 0
+
         ]);
 
 
