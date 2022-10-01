@@ -96,6 +96,12 @@
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     {{ __('checking') }}
                                 </th>
+
+                                <th
+                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    {{ __('Approve') }}
+                                </th>
+
                             </tr>
                         </thead>
 
@@ -204,15 +210,30 @@
                                     <td class="px-2 py-2w-full">
                                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                                             <div class=" w-1/3">
-                                                <form method="post" action="{{ route('check-in-out.update', $visit->id) }}"
+                                                <form method="post"
+                                                    action="{{ route('check-in-out.update', $visit->id) }}"
                                                     class="flex">
                                                     @csrf @method('PUT')
-                                                   <x-toggle publish="{{ $visit->status }}"/> 
-                                                   
+                                                    <x-toggle publish="{{ $visit->status }}" />
+
                                                 </form>
                                             </div>
 
                                     </td>
+
+                                    <td class="px-2 py-2w-full">
+                                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                            <div class=" w-1/3">
+                                                <form method="post" action="{{ route('Approve.update', $visit->id) }}"
+                                                    class="flex">
+                                                    @csrf @method('PUT')
+                                                    <x-toggle2 publish="{{ $visit->Approved }}" />
+
+                                                </form>
+                                            </div>
+
+                                    </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -226,6 +247,6 @@
         function ShowHideDiv(chkHasCar) {
             var dvHasCar = document.getElementById("dvHasCar");
             dvHasCar.style.display = chkHasCar.checked ? "block" : "none";
-        } 
-        </script>
-       </x-admin-layout>
+        }
+    </script>
+</x-admin-layout>
