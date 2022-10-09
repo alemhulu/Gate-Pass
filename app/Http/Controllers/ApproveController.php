@@ -71,13 +71,11 @@ class ApproveController extends Controller
     {
         $visit = visit::findorfail($id);
 
-        if ($request->Approved == 1) { 
+        if($visit->Approved==0){
             $visit->Approved = 1;
             $visit->save();
             return redirect(route('visits.index'))->with('success', 'the guest may enter ');
-        } 
-        
-        if ($request->Approved == 0) {
+        }else{
             $visit->Approved= 0;
             $visit->save();
             return redirect(route('visits.index'))->with('success', 'the guest is not approved yet');
