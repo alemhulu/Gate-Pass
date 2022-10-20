@@ -17,7 +17,7 @@
         <!-- Search button -->
         <div>
             </form>
-            <form action="/search" method="POST" role="search">
+            {{-- <form action="/search" method="POST" role="search">
                 {{ csrf_field() }}
             
                 <div class="input-group">
@@ -28,7 +28,7 @@
                         </button>
                     </span>
                 </div>
-            </form>
+            </form> --}}
 
 
 

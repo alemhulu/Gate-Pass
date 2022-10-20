@@ -14,7 +14,7 @@ class PurposeController extends Controller
      */
     public function index(Request $id)
     {
-         return ('123');
+        
         $visit = Visit::latest('updated_at')->first();
         return view('purpose', compact('visit'));
 
@@ -41,7 +41,7 @@ class PurposeController extends Controller
     {
 
         return 1567789;
-        foreach ($purpose AS $purpose) {
+        foreach ($purposes AS $purpose) {
             $test = DB::table('purpose')->insert(
                 ['url' => $purpose]
             );
