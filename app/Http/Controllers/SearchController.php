@@ -1,24 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\visit;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\DB;
-class PurposeController extends Controller
+use App\Models\visit;
+
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $id)
+    public function index(Request $request)
     {
-        
-        $visit = Visit::latest('updated_at')->first();
-        return view('purpose', compact('visit'));
-
-
+        $search=$request['search'] ?? "";
+      if($search != "")
+      {
+        $visits=visit::where('visitor_list','=',"%.$search.%")->orWhere('code','=',"%.$search.%")->orWhere('email','=',"%.$search.%")->get();
+      }
+        return view('visit',compact('visits'));
     }
 
     /**
@@ -39,15 +40,7 @@ class PurposeController extends Controller
      */
     public function store(Request $request)
     {
-
-        // return 1567789;
-        // foreach ($purposes AS $purpose) {
-        //     $test = DB::table('purpose')->insert(
-        //         ['url' => $purpose]
-        //     );
-        // }
-    
-        // return $test;
+        //
     }
 
     /**

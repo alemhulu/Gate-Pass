@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\ApproveController;
 use App\Http\Controllers\PurposeController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,6 @@ Route::group(
         'check-in-out'=>CheckinCheckoutController::class,  
         'Approve'=>ApproveController::class,     
         'purpose'=>PurposeController::class,     
-
+         'search'=>SearchController::class
     ]);
 });

@@ -28,11 +28,14 @@ class VisitController extends Controller
     //     $search=$request->get('search');
     //     $visits=\DB::table('visits')->where('code','like','%'.$search.'%')->paginate(5);
     //     return view('visit.index',['visits'=>$visits]);
+    
     // }
 
-    public function index()
+    public function index(Request $request)
     {
+      
         $visits = Visit::latest('updated_at')->get();
+        
         return view('visit.index', compact('visits'));
     }
 
