@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 use App\Models\visit;
 
 use Illuminate\Http\Request;
-
-class ApproveController extends Controller
+use App\Http\Controllers\DB;
+class PurposeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $id)
     {
-        //
+         return ('123');
+        $visit = Visit::latest('updated_at')->first();
+        return view('purpose', compact('visit'));
+
+
     }
 
     /**
@@ -35,7 +39,15 @@ class ApproveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        return 1567789;
+        foreach ($purpose AS $purpose) {
+            $test = DB::table('purpose')->insert(
+                ['url' => $purpose]
+            );
+        }
+    
+        return $test;
     }
 
     /**
@@ -69,21 +81,7 @@ class ApproveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $visit = visit::findorfail($id);
-
-            if($visit->Approved==0){
-                $visit->Approved = 1;
-                $visit->save();
-                return redirect(route('visits.index'))->with('success', 'the guest may enter ');
-            } 
-            else{
-                $visit->Approved= 0;
-                $visit->save();
-                return redirect(route('visits.index'))->with('success', 'the guest is not approved yet');
-
-
-        
-        }
+        //
     }
 
     /**

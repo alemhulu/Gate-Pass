@@ -34,26 +34,24 @@
                     <div class="flex space-x-2">
                         <x-select id="month" name="month">
                             @foreach ($months as $key => $month)
-                            <option value={{ $key + 1 }} @if ($month===$ethipic->getTextualMonth()) selected @endif>
-                                {{ __($month) }}
-                            </option>
+                                <option value={{ $key + 1 }} @if ($month === $ethipic->getTextualMonth()) selected @endif>
+                                    {{ __($month) }}
+                                </option>
                             @endforeach
                         </x-select>
 
                         <x-select id="day" name="day">
-                            @for ($i = 1; $i <= 30; $i++) <option value={{ $i }} @if ($i===$ethipic->getDay()) selected
-                                @endif>
-                                {{ $i }}</option>
-                                @endfor
+                            @for ($i = 1; $i <= 30; $i++)
+                                <option value={{ $i }} @if ($i === $ethipic->getDay()) selected @endif>
+                                    {{ $i }}</option>
+                            @endfor
                         </x-select>
 
                         <x-select id="year" name="year">
-                            @for ($i = 2014; $i <= 2024; $i++) <option value={{ $i }} @if ($i===$ethipic->
-                                getYear())
-                                selected
-                                @endif>
-                                {{ $i }}</option>
-                                @endfor
+                            @for ($i = 2014; $i <= 2024; $i++)
+                                <option value={{ $i }} @if ($i === $ethipic->getYear()) selected @endif>
+                                    {{ $i }}</option>
+                            @endfor
                         </x-select>
                     </div>
                     <x-input-error for="name" />
@@ -77,18 +75,27 @@
             </div>
 
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-                <x-multi-checkbox name="has_car" value="1" title="{{ __('Check If Visitor Has Car') }}"
-                    onclick="ShowHideDiv(this)" />
-            </div>
-            <div id="dvHasCar" class="hidden">
+                <x-label for="purpose" value="Purpose of Visit" />
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <textarea name="purpose" cols="70" rows="5"></textarea>
+
+
+                </div>
+
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-                    <x-label for="has_car" value="{{ __('Visitor Plate Numbers') }}" />
-                    <div class="mt-1 sm:mt-0 sm:col-span-2">
-                        <x-input type="text" name="plates" value="{{ old('plates') }}" placeholder="AA B12345" />
-                        <x-input-error for="has_car" />
+                    <x-multi-checkbox name="has_car" value="1" title="{{ __('Check If Visitor Has Car') }}"
+                        onclick="ShowHideDiv(this)" />
+                </div>
+                <div id="dvHasCar" class="hidden">
+                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
+                        <x-label for="has_car" value="{{ __('Visitor Plate Numbers') }}" />
+                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                            <x-input type="text" name="plates" value="{{ old('plates') }}"
+                                placeholder="AA B12345" />
+                            <x-input-error for="has_car" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
         </x-slot>
     </x-form-card>
