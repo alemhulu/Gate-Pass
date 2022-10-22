@@ -28,11 +28,14 @@ class VisitController extends Controller
     //     $search=$request->get('search');
     //     $visits=\DB::table('visits')->where('code','like','%'.$search.'%')->paginate(5);
     //     return view('visit.index',['visits'=>$visits]);
+    
     // }
 
-    public function index()
+    public function index(Request $request)
     {
+      
         $visits = Visit::latest('updated_at')->get();
+        
         return view('visit.index', compact('visits'));
     }
 
@@ -44,6 +47,7 @@ class VisitController extends Controller
 
     public function store(Request $request)
     {
+        // return request();
         $validator = $request->validate(
             [
                 'visitors' => 'required',
@@ -51,7 +55,8 @@ class VisitController extends Controller
                 'month' => 'required',
                 'day' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'plates' => 'nullable'
+                'plates' => 'nullable',
+                'purpose'=>'required'
 
             ],
 
@@ -124,13 +129,14 @@ class VisitController extends Controller
             'plates'       => $request->plates,
             'qr_image' => $qr_image,
             'status'       => 0,
-            'Approved'       => 0
-
+            'Approved'       => 0,
+             'purpose' =>$request->purpose
         ]);
 
 
         $visit->save();
-
+// return($visit);
+// dd($visit);
         return redirect(route('visits.index'));
     }
 

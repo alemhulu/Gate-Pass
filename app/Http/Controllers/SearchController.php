@@ -1,20 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\visit;
 
 use Illuminate\Http\Request;
+use App\Models\visit;
 
-class ApproveController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search=$request['search'] ?? "";
+      if($search != "")
+      {
+        $visits=visit::where('visitor_list','=',"%.$search.%")->orWhere('code','=',"%.$search.%")->orWhere('email','=',"%.$search.%")->get();
+      }
+        return view('visit',compact('visits'));
     }
 
     /**
@@ -69,19 +74,7 @@ class ApproveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $visit = visit::findorfail($id);
-            if($visit->Approved==0){
-                $visit->Approved = 1;
-                $visit->save();
-                return redirect(route('visits.index'))->with('success', 'the guest may enter ');
-            } 
-            else{
-                $visit->Approved= 0;
-                $visit->save();
-                return redirect(route('visits.index'))->with('success', 'the guest is not approved yet');
-
-
-    
+        //
     }
 
     /**

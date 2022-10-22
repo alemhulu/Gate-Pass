@@ -16,18 +16,18 @@
     <div>
         <!-- Search button -->
         <div>
-            <form action="/search" method="get">
-                <div class="form-group">
-                    <input type="search" name="search" class="input-group">
-                    <span class="input-group-prepend">
+            </form>
+            <form action={{ route('search.index') }} method="POST" role="search">
+                {{ csrf_field() }}
 
-                        <button type="submit" class="btn btn-primary">search
-
-                        </button>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q"
+                        placeholder="Search users"> <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>search
+                        </button>  
                     </span>
                 </div>
-
-
             </form>
 
 
@@ -100,6 +100,11 @@
                                 <th
                                     class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     {{ __('Approve') }}
+                                </th>
+
+                                <th
+                                    class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    {{ __('purpose') }}
                                 </th>
 
                             </tr>
@@ -231,7 +236,16 @@
 
                                                 </form>
                                             </div>
-
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ route('purpose.show', $visit->id) }}">
+                                                <x-button class="flex ">
+                                                    <i class="flex fi-rr-arrow-center mr-1"></i>
+                                                    {{ __('purpose') }}
+                                                </x-button>
+                                            </a>
+                                        </div>
                                     </td>
 
                                 </tr>
@@ -243,10 +257,4 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        function ShowHideDiv(chkHasCar) {
-            var dvHasCar = document.getElementById("dvHasCar");
-            dvHasCar.style.display = chkHasCar.checked ? "block" : "none";
-        }
-    </script>
 </x-admin-layout>
