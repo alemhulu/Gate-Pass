@@ -21,7 +21,8 @@ class visit extends Model
         'plates',
         'status',
         'qr_image',
-        'Approved'  
+        'Approved',
+        'purpose' 
 
     ];
 

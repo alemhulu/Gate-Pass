@@ -32,7 +32,7 @@
      <!-- show Post -->
 
      <div>
-         <form class="w-full" action="{{ route('purpose.store') }}"
+         <form class="w-full" 
              method="POST>     
             {{ csrf_field() }}
             <div class="w-full px-16 py-20 mt-6

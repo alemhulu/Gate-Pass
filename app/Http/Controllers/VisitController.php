@@ -47,6 +47,7 @@ class VisitController extends Controller
 
     public function store(Request $request)
     {
+        // return request();
         $validator = $request->validate(
             [
                 'visitors' => 'required',
@@ -54,7 +55,8 @@ class VisitController extends Controller
                 'month' => 'required',
                 'day' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'plates' => 'nullable'
+                'plates' => 'nullable',
+                'purpose'=>'required'
 
             ],
 
@@ -127,13 +129,14 @@ class VisitController extends Controller
             'plates'       => $request->plates,
             'qr_image' => $qr_image,
             'status'       => 0,
-            'Approved'       => 0
-
+            'Approved'       => 0,
+             'purpose' =>$request->purpose
         ]);
 
 
         $visit->save();
-
+// return($visit);
+// dd($visit);
         return redirect(route('visits.index'));
     }
 

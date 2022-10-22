@@ -86,8 +86,8 @@
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
                 <x-label for="purpose" value="Purpose of Visit" />
                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <textarea name="purpose" cols="70" rows="5" value="{{ $visit->purpose }}"></textarea>
-                    <x-input-error for="email" />
+                    <textarea name="Purpose of Visit" cols="70" rows="5" value="{{ $visit->purpose }}"></textarea>
+                    <x-input-error for="purpose" />
 
                 </div>
 

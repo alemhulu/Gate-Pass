@@ -239,7 +239,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a href="{{ route('purpose.index') }}">
+                                            <a href="{{ route('purpose.show', $visit->id) }}">
                                                 <x-button class="flex ">
                                                     <i class="flex fi-rr-arrow-center mr-1"></i>
                                                     {{ __('purpose') }}

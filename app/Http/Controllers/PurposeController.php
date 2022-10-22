@@ -12,10 +12,11 @@ class PurposeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $id)
+    public function index(Visit $visit )
     {
         
-        $visit = Visit::latest('updated_at')->first();
+        $visit = Visit::find($visit);
+        return ($visit);
         return view('purpose', compact('visit'));
 
 
@@ -58,7 +59,8 @@ class PurposeController extends Controller
      */
     public function show($id)
     {
-        //
+        $visit=visit::find($id);
+        return view('purpose',compact('visit'));
     }
 
     /**
