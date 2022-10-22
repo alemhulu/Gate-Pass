@@ -70,7 +70,6 @@ class ApproveController extends Controller
     public function update(Request $request, $id)
     {
         $visit = visit::findorfail($id);
-
             if($visit->Approved==0){
                 $visit->Approved = 1;
                 $visit->save();
@@ -82,8 +81,7 @@ class ApproveController extends Controller
                 return redirect(route('visits.index'))->with('success', 'the guest is not approved yet');
 
 
-        
-        }
+    
     }
 
     /**
